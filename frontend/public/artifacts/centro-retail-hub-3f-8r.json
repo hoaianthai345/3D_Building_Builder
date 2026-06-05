@@ -44,8 +44,8 @@
   },
   "meta": {
     "llm_provider": "mock",
-    "build_ms": 18.8,
-    "created_at": "2026-06-05T16:13:06.595443+00:00"
+    "build_ms": 20.4,
+    "created_at": "2026-06-05T17:31:41.941743+00:00"
   },
   "structure": {
     "floors": [
@@ -63,7 +63,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_1",
@@ -74,7 +79,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_2",
@@ -85,7 +95,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_3",
@@ -96,7 +111,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_4",
@@ -107,7 +127,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_5",
@@ -118,7 +143,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_6",
@@ -129,7 +159,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_0_7",
@@ -140,7 +175,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           }
         ]
       },
@@ -158,7 +198,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_1",
@@ -169,7 +214,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_2",
@@ -180,7 +230,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_3",
@@ -191,7 +246,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_4",
@@ -202,7 +262,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_5",
@@ -213,7 +278,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_6",
@@ -224,7 +294,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_1_7",
@@ -235,7 +310,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           }
         ]
       },
@@ -253,7 +333,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_1",
@@ -264,7 +349,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_2",
@@ -275,7 +365,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_3",
@@ -286,7 +381,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_4",
@@ -297,7 +397,12 @@
             "w": 8.2,
             "d": 4.3,
             "area": 35.3,
-            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_5",
@@ -308,7 +413,12 @@
             "w": 2.93,
             "d": 6.7,
             "area": 19.6,
-            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_6",
@@ -319,7 +429,12 @@
             "w": 5.27,
             "d": 4.84,
             "area": 25.5,
-            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           },
           {
             "id": "room_2_7",
@@ -330,7 +445,12 @@
             "w": 5.27,
             "d": 1.86,
             "area": 9.8,
-            "description": "Kho và khu hậu cần cho gian hàng."
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
           }
         ]
       }

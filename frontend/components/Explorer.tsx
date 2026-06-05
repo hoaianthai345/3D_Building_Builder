@@ -10,6 +10,8 @@ import {
   ROOM_TYPE_LABELS,
   ROOM_TYPE_COLORS,
 } from "@/lib/types";
+import { PanoramaViewer } from "./PanoramaViewer";
+import { XIcon } from "@phosphor-icons/react";
 
 // name -> floor index ("roof" for the cap, null for nothing structural)
 function floorOf(name: string): number | "roof" | null {
@@ -102,6 +104,8 @@ function BuildingModel({
 export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: string }) {
   const floors = bundle.spec.floors;
   const totalH = bundle.spec.floors * bundle.spec.floor_height;
+  const artifactsBase = glbUrl.replace(/\/[^/]+\.glb$/, "");
+  const [panoRoom, setPanoRoom] = useState<Room | null>(null);
   const [view, setView] = useState<ViewState>({
     explode: 0,
     activeFloor: null,
@@ -251,13 +255,41 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
               {selectedRoom.description}
             </p>
           )}
-          <button
-            disabled
-            title="Sắp có: tham quan 360 do AI dựng"
-            className="mt-3 w-full cursor-not-allowed rounded-[10px] border border-dashed border-[var(--border-strong)] py-2 text-xs text-[var(--text-faint)]"
-          >
-            Bước vào (360 AI) · sắp có
-          </button>
+          {selectedRoom.panorama?.status === "ready" && selectedRoom.panorama?.image ? (
+            <button
+              onClick={() => setPanoRoom(selectedRoom)}
+              className="mt-3 w-full rounded-[10px] bg-[var(--accent-strong)] py-2 text-xs font-medium text-white transition hover:bg-[var(--accent-hover)]"
+            >
+              Bước vào (360)
+            </button>
+          ) : (
+            <button
+              disabled
+              title={selectedRoom.panorama?.prompt || "Sắp có: tham quan 360 do AI dựng"}
+              className="mt-3 w-full cursor-not-allowed rounded-[10px] border border-dashed border-[var(--border-strong)] py-2 text-xs text-[var(--text-faint)]"
+            >
+              Ảnh 360 sắp có
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Panorama "step inside" modal */}
+      {panoRoom?.panorama?.image && (
+        <div className="absolute inset-0 z-50 flex flex-col bg-black/80">
+          <div className="flex items-center justify-between px-4 py-3 text-white">
+            <p className="text-sm font-medium">{panoRoom.name} · tham quan 360</p>
+            <button
+              onClick={() => setPanoRoom(null)}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 hover:bg-white/25"
+              aria-label="Đóng"
+            >
+              <XIcon size={16} />
+            </button>
+          </div>
+          <div className="flex-1">
+            <PanoramaViewer image={`${artifactsBase}/${panoRoom.panorama.image}`} />
+          </div>
         </div>
       )}
     </div>

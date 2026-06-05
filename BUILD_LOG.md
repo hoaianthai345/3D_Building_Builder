@@ -26,6 +26,7 @@ lưu ý số hóa. Repo: `hoaianthai345/3D_Building_Builder`.
 | 10 | 06-06 | Tòa lớn + brief Codex | Mixed-use 30 tầng; contract 360 (`Room.panorama`); per-floor program | Aurora baseline, `CODEX_TASK.md` |
 | 11 | 06-06 | Skill repo | Đóng gói pipeline thành skill tái dùng | `.claude/skills/build-3d-building/` |
 | 12 | 06-06 | Codex làm giàu Aurora + review | Codex enrich nội dung + prompt 360; contract-owner review PASS | `enrich_aurora.py`, JSON đã enrich |
+| 13 | 06-06 | Panorama 360 "Bước vào" (phase 2) | Viewer R3F (đổi từ photo-sphere-viewer do xung đột `three`); tool placeholder CPU + Skybox | `PanoramaViewer`, gen tools, 30 ảnh demo |
 
 ---
 
@@ -147,6 +148,17 @@ digitization_tips..." → kiểm tra bằng `DescriberOutput.model_validate` (é
   em-dash = 0 → **PASS**.
 - **Khó khăn/ghi chú:** thay đổi Codex bị gộp vào commit `6e5e11b` (do `git add -A` cùng
   lúc) — đã push, vô hại, chỉ là message không mô tả phần enrich.
+
+### Phiên 13 — Panorama 360 "Bước vào" / Phase 2 (06-06)
+- **Bối cảnh:** gắn tham quan 360 vào nút "Bước vào" trong Explorer.
+- **Đã làm:** `PanoramaViewer` (sphere equirect mặt trong, dựng bằng R3F sẵn có); wire nút
+  "Bước vào" + modal trong Explorer (bật khi `panorama.status=ready`); 2 tool sinh ảnh —
+  `gen_placeholder_panoramas.py` (CPU/Pillow, offline) và `gen_panoramas.py` (Skybox AI,
+  cần key); sinh 30 placeholder cho scene office (status ready) để demo chạy ngay.
+- **Khó khăn:** `@photo-sphere-viewer/core` xung đột peer `three` với R3F (0.17x) → chuyển
+  sang sphere R3F (cùng stack, không thêm dep). `@google/model-viewer` ghim peer `three^0.163`
+  vs 0.171 → thêm `frontend/.npmrc` `legacy-peer-deps=true` để install sạch (local + Vercel).
+- **Kết quả:** build pass; chụp xác nhận panorama render đúng; ảnh 360 phục vụ HTTP 200.
 
 ---
 

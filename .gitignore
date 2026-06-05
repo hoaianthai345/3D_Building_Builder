@@ -11,6 +11,9 @@ bench/results.csv
 # secrets / env
 .env
 
+# local machine settings (permissions etc.)
+.claude/settings.local.json
+
 # node / next (frontend)
 node_modules/
 frontend/.next/
