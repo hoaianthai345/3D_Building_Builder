@@ -25,6 +25,7 @@ lưu ý số hóa. Repo: `hoaianthai345/3D_Building_Builder`.
 | 9 | 06-06 | Push GitHub | Đẩy `main` chuẩn bị Colab | repo public |
 | 10 | 06-06 | Tòa lớn + brief Codex | Mixed-use 30 tầng; contract 360 (`Room.panorama`); per-floor program | Aurora baseline, `CODEX_TASK.md` |
 | 11 | 06-06 | Skill repo | Đóng gói pipeline thành skill tái dùng | `.claude/skills/build-3d-building/` |
+| 12 | 06-06 | Codex làm giàu Aurora + review | Codex enrich nội dung + prompt 360; contract-owner review PASS | `enrich_aurora.py`, JSON đã enrich |
 
 ---
 
@@ -135,6 +136,17 @@ digitization_tips..." → kiểm tra bằng `DescriberOutput.model_validate` (é
 - **Đã làm:** `.claude/skills/build-3d-building/SKILL.md` — playbook tái dùng (Mode A dựng
   mới, Mode B làm giàu + prompt 360, contract, provider, verify). Ghi rõ **subscription ≠
   API key**.
+
+### Phiên 12 — Codex làm giàu Aurora + review (06-06)
+- **Bối cảnh:** giao Codex theo `CODEX_TASK.md` (data + prompt 360, không sinh ảnh).
+- **Đã làm (Codex):** `builder/tools/enrich_aurora.py` → ghi đè bundle Aurora; tên + mô tả
+  tiếng Việt theo band (retail / office / residential / penthouse); prompt 360 English cho
+  mỗi phòng; giữ `status=pending`, `image=""`.
+- **Review (contract-owner):** schema validate OK; 180 `room_id` khớp baseline; `spec`/
+  `model`/`id` giữ nguyên; mọi phòng có prompt + description; pano pending + no image;
+  em-dash = 0 → **PASS**.
+- **Khó khăn/ghi chú:** thay đổi Codex bị gộp vào commit `6e5e11b` (do `git add -A` cùng
+  lúc) — đã push, vô hại, chỉ là message không mô tả phần enrich.
 
 ---
 
