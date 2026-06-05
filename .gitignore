@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# scratch artifacts (root). Demo artifacts live in frontend/public/artifacts and ARE committed.
+/artifacts/
+bench/results.csv
+
+# secrets / env
+.env
+
+# node / next (frontend)
+node_modules/
+frontend/.next/
+frontend/out/
+
+# os
+.DS_Store

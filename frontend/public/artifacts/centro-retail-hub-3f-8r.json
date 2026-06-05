@@ -1,0 +1,344 @@
+{
+  "id": "centro-retail-hub-3f-8r",
+  "version": "1.1",
+  "input": {
+    "project_name": "Centro Retail Hub",
+    "space_type": "retail",
+    "description": "Trung tâm bán lẻ 3 tầng, mỗi tầng 8 gian hàng, sức chứa 600 khách",
+    "target_audience": "Thương hiệu bán lẻ và F&B",
+    "floors": null,
+    "rooms_per_floor": null,
+    "occupancy": null
+  },
+  "spec": {
+    "space_type": "retail",
+    "floors": 3,
+    "rooms_per_floor": 8,
+    "occupancy": 600,
+    "footprint_w": 16.4,
+    "footprint_d": 11.0,
+    "floor_height": 3.2,
+    "layout_hint": "central-core",
+    "palette": "blue"
+  },
+  "describer": {
+    "title": "Centro Retail Hub — Không gian trung tâm bán lẻ 3 tầng hiện đại",
+    "summary": "Centro Retail Hub là trung tâm bán lẻ quy mô 3 tầng, mỗi tầng khoảng 8 phòng, sức chứa chừng 600 người hướng tới Thương hiệu bán lẻ và F&B. Mô hình được tổ chức quanh lõi giao thông trung tâm với mặt đứng nhịp cửa đều, tối ưu ánh sáng tự nhiên và tạo nhận diện chuyên nghiệp ngay từ ấn tượng đầu tiên.",
+    "highlights": [
+      "Mặt tiền kính rộng tối đa khả năng trưng bày và thu hút khách qua đường",
+      "Tầng thông sàn linh hoạt chia 8 gian hàng theo nhu cầu thuê",
+      "Luồng khách được dẫn hướng quanh lõi trung tâm giúp tăng tiếp xúc gian hàng",
+      "Sức chứa 600 khách phù hợp cao điểm cuối tuần"
+    ],
+    "digitization_tips": [
+      "Ưu tiên độ phân giải cao ở mặt tiền và biển hiệu vì đây là điểm nhìn chính",
+      "Quét ngoài giờ mở cửa để giảm người di chuyển gây bóng ma trong point cloud",
+      "Đặt mốc tỷ lệ tại cửa chính để mô hình đúng kích thước thực"
+    ]
+  },
+  "model": {
+    "glb": "centro-retail-hub-3f-8r.glb",
+    "backend": "procedural",
+    "tri_count": 1488,
+    "size_kb": 63.8
+  },
+  "meta": {
+    "llm_provider": "mock",
+    "build_ms": 18.8,
+    "created_at": "2026-06-05T16:13:06.595443+00:00"
+  },
+  "structure": {
+    "floors": [
+      {
+        "index": 0,
+        "name": "Tầng 1",
+        "elevation": 0.0,
+        "rooms": [
+          {
+            "id": "room_0_0",
+            "name": "Gian hàng lớn (T1)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_0_1",
+            "name": "Gian hàng nhỏ (T1)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_0_2",
+            "name": "Khu F&B (T1)",
+            "type": "fnb",
+            "x": -5.27,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_0_3",
+            "name": "Khu kỹ thuật (T1)",
+            "type": "service",
+            "x": -5.27,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          },
+          {
+            "id": "room_0_4",
+            "name": "Gian hàng lớn (T1)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_0_5",
+            "name": "Gian hàng nhỏ (T1)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_0_6",
+            "name": "Khu F&B (T1)",
+            "type": "fnb",
+            "x": 2.93,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_0_7",
+            "name": "Khu kỹ thuật (T1)",
+            "type": "service",
+            "x": 2.93,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Tầng 2",
+        "elevation": 3.2,
+        "rooms": [
+          {
+            "id": "room_1_0",
+            "name": "Gian hàng lớn (T2)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_1_1",
+            "name": "Gian hàng nhỏ (T2)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_1_2",
+            "name": "Khu F&B (T2)",
+            "type": "fnb",
+            "x": -5.27,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_1_3",
+            "name": "Khu kỹ thuật (T2)",
+            "type": "service",
+            "x": -5.27,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          },
+          {
+            "id": "room_1_4",
+            "name": "Gian hàng lớn (T2)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_1_5",
+            "name": "Gian hàng nhỏ (T2)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_1_6",
+            "name": "Khu F&B (T2)",
+            "type": "fnb",
+            "x": 2.93,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_1_7",
+            "name": "Khu kỹ thuật (T2)",
+            "type": "service",
+            "x": 2.93,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Tầng 3",
+        "elevation": 6.4,
+        "rooms": [
+          {
+            "id": "room_2_0",
+            "name": "Gian hàng lớn (T3)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_2_1",
+            "name": "Gian hàng nhỏ (T3)",
+            "type": "shop",
+            "x": -8.2,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_2_2",
+            "name": "Khu F&B (T3)",
+            "type": "fnb",
+            "x": -5.27,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_2_3",
+            "name": "Khu kỹ thuật (T3)",
+            "type": "service",
+            "x": -5.27,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          },
+          {
+            "id": "room_2_4",
+            "name": "Gian hàng lớn (T3)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -5.5,
+            "w": 8.2,
+            "d": 4.3,
+            "area": 35.3,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng."
+          },
+          {
+            "id": "room_2_5",
+            "name": "Gian hàng nhỏ (T3)",
+            "type": "shop",
+            "x": 0.0,
+            "z": -1.2,
+            "w": 2.93,
+            "d": 6.7,
+            "area": 19.6,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ."
+          },
+          {
+            "id": "room_2_6",
+            "name": "Khu F&B (T3)",
+            "type": "fnb",
+            "x": 2.93,
+            "z": -1.2,
+            "w": 5.27,
+            "d": 4.84,
+            "area": 25.5,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách."
+          },
+          {
+            "id": "room_2_7",
+            "name": "Khu kỹ thuật (T3)",
+            "type": "service",
+            "x": 2.93,
+            "z": 3.64,
+            "w": 5.27,
+            "d": 1.86,
+            "area": 9.8,
+            "description": "Kho và khu hậu cần cho gian hàng."
+          }
+        ]
+      }
+    ],
+    "room_types": [
+      "fnb",
+      "service",
+      "shop"
+    ]
+  }
+}

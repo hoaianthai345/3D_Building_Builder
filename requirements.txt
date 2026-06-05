@@ -1,0 +1,13 @@
+# Core pipeline (builder) + API backend.
+# Procedural 3D needs only numpy + trimesh (CPU, no GPU). Everything below runs
+# on Colab, a plain laptop, or a GPU machine identically.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+trimesh>=4.4
+numpy>=1.26
+python-multipart>=0.0.9
+
+# Optional: real LLM provider. Code falls back to MockLLM when this is absent
+# or no API key is set, so it is safe to omit during offline development.
+anthropic>=0.39

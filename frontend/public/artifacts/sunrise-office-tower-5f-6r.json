@@ -1,0 +1,426 @@
+{
+  "id": "sunrise-office-tower-5f-6r",
+  "version": "1.1",
+  "input": {
+    "project_name": "Sunrise Office Tower",
+    "space_type": "office",
+    "description": "Tòa văn phòng 5 tầng, mỗi tầng 6 phòng, khoảng 120 người",
+    "target_audience": "Doanh nghiệp SME thuê văn phòng",
+    "floors": null,
+    "rooms_per_floor": null,
+    "occupancy": null
+  },
+  "spec": {
+    "space_type": "office",
+    "floors": 5,
+    "rooms_per_floor": 6,
+    "occupancy": 120,
+    "footprint_w": 14.2,
+    "footprint_d": 9.5,
+    "floor_height": 3.2,
+    "layout_hint": "central-core",
+    "palette": "blue"
+  },
+  "describer": {
+    "title": "Sunrise Office Tower — Không gian văn phòng 5 tầng hiện đại",
+    "summary": "Sunrise Office Tower là văn phòng quy mô 5 tầng, mỗi tầng khoảng 6 phòng, sức chứa chừng 120 người hướng tới Doanh nghiệp SME thuê văn phòng. Mô hình được tổ chức quanh lõi giao thông trung tâm với mặt đứng nhịp cửa đều, tối ưu ánh sáng tự nhiên và tạo nhận diện chuyên nghiệp ngay từ ấn tượng đầu tiên.",
+    "highlights": [
+      "Lõi giao thông trung tâm giúp luồng di chuyển ngắn và chia thuê linh hoạt theo phòng",
+      "Mặt kính lớn tối ưu ánh sáng tự nhiên cho 6 phòng làm việc mỗi tầng",
+      "Sảnh lễ tân tầng trệt định vị hình ảnh chuyên nghiệp cho khách thuê",
+      "Quy mô 120 chỗ phù hợp chia nhỏ cho nhiều doanh nghiệp cùng tòa"
+    ],
+    "digitization_tips": [
+      "Quét kỹ lõi thang và hành lang vì đây là khu vực dễ thiếu điểm ảnh khi số hóa",
+      "Chụp mặt kính vào lúc nắng dịu để tránh lóa và phản chiếu gây nhiễu mesh",
+      "Đặt mốc tỷ lệ tại sảnh lễ tân để căn chỉnh kích thước mô hình chính xác"
+    ]
+  },
+  "model": {
+    "glb": "sunrise-office-tower-5f-6r.glb",
+    "backend": "procedural",
+    "tri_count": 1872,
+    "size_kb": 81.2
+  },
+  "meta": {
+    "llm_provider": "mock",
+    "build_ms": 30.6,
+    "created_at": "2026-06-05T16:13:05.751185+00:00"
+  },
+  "structure": {
+    "floors": [
+      {
+        "index": 0,
+        "name": "Tầng 1",
+        "elevation": 0.0,
+        "rooms": [
+          {
+            "id": "room_0_0",
+            "name": "Sảnh lễ tân (T1)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          },
+          {
+            "id": "room_0_1",
+            "name": "Khu làm việc mở (T1)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi."
+          },
+          {
+            "id": "room_0_2",
+            "name": "Phòng họp (T1)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm."
+          },
+          {
+            "id": "room_0_3",
+            "name": "Phòng quản lý (T1)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý."
+          },
+          {
+            "id": "room_0_4",
+            "name": "Pantry (T1)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên."
+          },
+          {
+            "id": "room_0_5",
+            "name": "Sảnh lễ tân (T1)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Tầng 2",
+        "elevation": 3.2,
+        "rooms": [
+          {
+            "id": "room_1_0",
+            "name": "Sảnh lễ tân (T2)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          },
+          {
+            "id": "room_1_1",
+            "name": "Khu làm việc mở (T2)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi."
+          },
+          {
+            "id": "room_1_2",
+            "name": "Phòng họp (T2)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm."
+          },
+          {
+            "id": "room_1_3",
+            "name": "Phòng quản lý (T2)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý."
+          },
+          {
+            "id": "room_1_4",
+            "name": "Pantry (T2)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên."
+          },
+          {
+            "id": "room_1_5",
+            "name": "Sảnh lễ tân (T2)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Tầng 3",
+        "elevation": 6.4,
+        "rooms": [
+          {
+            "id": "room_2_0",
+            "name": "Sảnh lễ tân (T3)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          },
+          {
+            "id": "room_2_1",
+            "name": "Khu làm việc mở (T3)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi."
+          },
+          {
+            "id": "room_2_2",
+            "name": "Phòng họp (T3)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm."
+          },
+          {
+            "id": "room_2_3",
+            "name": "Phòng quản lý (T3)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý."
+          },
+          {
+            "id": "room_2_4",
+            "name": "Pantry (T3)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên."
+          },
+          {
+            "id": "room_2_5",
+            "name": "Sảnh lễ tân (T3)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "name": "Tầng 4",
+        "elevation": 9.6,
+        "rooms": [
+          {
+            "id": "room_3_0",
+            "name": "Sảnh lễ tân (T4)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          },
+          {
+            "id": "room_3_1",
+            "name": "Khu làm việc mở (T4)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi."
+          },
+          {
+            "id": "room_3_2",
+            "name": "Phòng họp (T4)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm."
+          },
+          {
+            "id": "room_3_3",
+            "name": "Phòng quản lý (T4)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý."
+          },
+          {
+            "id": "room_3_4",
+            "name": "Pantry (T4)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên."
+          },
+          {
+            "id": "room_3_5",
+            "name": "Sảnh lễ tân (T4)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "name": "Tầng 5",
+        "elevation": 12.8,
+        "rooms": [
+          {
+            "id": "room_4_0",
+            "name": "Sảnh lễ tân (T5)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          },
+          {
+            "id": "room_4_1",
+            "name": "Khu làm việc mở (T5)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi."
+          },
+          {
+            "id": "room_4_2",
+            "name": "Phòng họp (T5)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm."
+          },
+          {
+            "id": "room_4_3",
+            "name": "Phòng quản lý (T5)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý."
+          },
+          {
+            "id": "room_4_4",
+            "name": "Pantry (T5)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên."
+          },
+          {
+            "id": "room_4_5",
+            "name": "Sảnh lễ tân (T5)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên."
+          }
+        ]
+      }
+    ],
+    "room_types": [
+      "manager",
+      "meeting",
+      "open_work",
+      "reception",
+      "service"
+    ]
+  }
+}

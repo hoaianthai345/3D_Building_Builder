@@ -1,0 +1,670 @@
+{
+  "id": "lake-view-residences-12f-4r",
+  "version": "1.1",
+  "input": {
+    "project_name": "Lake View Residences",
+    "space_type": "residential",
+    "description": "Chung cư 12 tầng, mỗi tầng 4 căn hộ, khoảng 200 cư dân",
+    "target_audience": "Gia đình trẻ ven hồ",
+    "floors": null,
+    "rooms_per_floor": null,
+    "occupancy": null
+  },
+  "spec": {
+    "space_type": "residential",
+    "floors": 12,
+    "rooms_per_floor": 4,
+    "occupancy": 192,
+    "footprint_w": 11.6,
+    "footprint_d": 7.7,
+    "floor_height": 3.2,
+    "layout_hint": "central-core",
+    "palette": "blue"
+  },
+  "describer": {
+    "title": "Lake View Residences — Không gian tòa nhà ở 12 tầng hiện đại",
+    "summary": "Lake View Residences là tòa nhà ở quy mô 12 tầng, mỗi tầng khoảng 4 phòng, sức chứa chừng 192 người hướng tới Gia đình trẻ ven hồ. Mô hình được tổ chức quanh lõi giao thông trung tâm với mặt đứng nhịp cửa đều, tối ưu ánh sáng tự nhiên và tạo nhận diện chuyên nghiệp ngay từ ấn tượng đầu tiên.",
+    "highlights": [
+      "Bố cục 4 căn mỗi tầng tối ưu thông gió và ánh sáng cho từng hộ",
+      "Lõi thang trung tâm rút ngắn hành lang, tăng diện tích sử dụng riêng tư",
+      "Mặt đứng nhịp cửa đều tạo nhận diện hiện đại cho khu dân cư",
+      "Quy mô 12 tầng cân bằng giữa mật độ và không gian sống thoáng"
+    ],
+    "digitization_tips": [
+      "Quét từng tầng điển hình rồi nhân bản để tiết kiệm thời gian xử lý",
+      "Chú ý ban công và lan can vì chi tiết mảnh dễ vỡ mesh khi tái dựng",
+      "Giữ nhất quán hướng Bắc giữa các tầng để ghép mô hình không lệch"
+    ]
+  },
+  "model": {
+    "glb": "lake-view-residences-12f-4r.glb",
+    "backend": "procedural",
+    "tri_count": 3036,
+    "size_kb": 133.1
+  },
+  "meta": {
+    "llm_provider": "mock",
+    "build_ms": 42.5,
+    "created_at": "2026-06-05T16:13:06.177993+00:00"
+  },
+  "structure": {
+    "floors": [
+      {
+        "index": 0,
+        "name": "Tầng 1",
+        "elevation": 0.0,
+        "rooms": [
+          {
+            "id": "room_0_0",
+            "name": "Căn hộ góc (T1)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_0_1",
+            "name": "Căn hộ tiêu chuẩn (T1)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_0_2",
+            "name": "Căn studio (T1)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_0_3",
+            "name": "Khu kỹ thuật (T1)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Tầng 2",
+        "elevation": 3.2,
+        "rooms": [
+          {
+            "id": "room_1_0",
+            "name": "Căn hộ góc (T2)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_1_1",
+            "name": "Căn hộ tiêu chuẩn (T2)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_1_2",
+            "name": "Căn studio (T2)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_1_3",
+            "name": "Khu kỹ thuật (T2)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Tầng 3",
+        "elevation": 6.4,
+        "rooms": [
+          {
+            "id": "room_2_0",
+            "name": "Căn hộ góc (T3)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_2_1",
+            "name": "Căn hộ tiêu chuẩn (T3)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_2_2",
+            "name": "Căn studio (T3)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_2_3",
+            "name": "Khu kỹ thuật (T3)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "name": "Tầng 4",
+        "elevation": 9.6,
+        "rooms": [
+          {
+            "id": "room_3_0",
+            "name": "Căn hộ góc (T4)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_3_1",
+            "name": "Căn hộ tiêu chuẩn (T4)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_3_2",
+            "name": "Căn studio (T4)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_3_3",
+            "name": "Khu kỹ thuật (T4)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "name": "Tầng 5",
+        "elevation": 12.8,
+        "rooms": [
+          {
+            "id": "room_4_0",
+            "name": "Căn hộ góc (T5)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_4_1",
+            "name": "Căn hộ tiêu chuẩn (T5)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_4_2",
+            "name": "Căn studio (T5)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_4_3",
+            "name": "Khu kỹ thuật (T5)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "name": "Tầng 6",
+        "elevation": 16.0,
+        "rooms": [
+          {
+            "id": "room_5_0",
+            "name": "Căn hộ góc (T6)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_5_1",
+            "name": "Căn hộ tiêu chuẩn (T6)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_5_2",
+            "name": "Căn studio (T6)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_5_3",
+            "name": "Khu kỹ thuật (T6)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "name": "Tầng 7",
+        "elevation": 19.2,
+        "rooms": [
+          {
+            "id": "room_6_0",
+            "name": "Căn hộ góc (T7)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_6_1",
+            "name": "Căn hộ tiêu chuẩn (T7)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_6_2",
+            "name": "Căn studio (T7)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_6_3",
+            "name": "Khu kỹ thuật (T7)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "name": "Tầng 8",
+        "elevation": 22.4,
+        "rooms": [
+          {
+            "id": "room_7_0",
+            "name": "Căn hộ góc (T8)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_7_1",
+            "name": "Căn hộ tiêu chuẩn (T8)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_7_2",
+            "name": "Căn studio (T8)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_7_3",
+            "name": "Khu kỹ thuật (T8)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "name": "Tầng 9",
+        "elevation": 25.6,
+        "rooms": [
+          {
+            "id": "room_8_0",
+            "name": "Căn hộ góc (T9)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_8_1",
+            "name": "Căn hộ tiêu chuẩn (T9)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_8_2",
+            "name": "Căn studio (T9)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_8_3",
+            "name": "Khu kỹ thuật (T9)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "name": "Tầng 10",
+        "elevation": 28.8,
+        "rooms": [
+          {
+            "id": "room_9_0",
+            "name": "Căn hộ góc (T10)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_9_1",
+            "name": "Căn hộ tiêu chuẩn (T10)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_9_2",
+            "name": "Căn studio (T10)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_9_3",
+            "name": "Khu kỹ thuật (T10)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "name": "Tầng 11",
+        "elevation": 32.0,
+        "rooms": [
+          {
+            "id": "room_10_0",
+            "name": "Căn hộ góc (T11)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_10_1",
+            "name": "Căn hộ tiêu chuẩn (T11)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_10_2",
+            "name": "Căn studio (T11)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_10_3",
+            "name": "Khu kỹ thuật (T11)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "name": "Tầng 12",
+        "elevation": 35.2,
+        "rooms": [
+          {
+            "id": "room_11_0",
+            "name": "Căn hộ góc (T12)",
+            "type": "apartment",
+            "x": -5.8,
+            "z": -3.85,
+            "w": 4.53,
+            "d": 7.7,
+            "area": 34.9,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng."
+          },
+          {
+            "id": "room_11_1",
+            "name": "Căn hộ tiêu chuẩn (T12)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -3.85,
+            "w": 7.07,
+            "d": 3.7,
+            "area": 26.1,
+            "description": "Căn hộ điển hình bố cục gọn gàng."
+          },
+          {
+            "id": "room_11_2",
+            "name": "Căn studio (T12)",
+            "type": "apartment",
+            "x": -1.27,
+            "z": -0.15,
+            "w": 4.35,
+            "d": 4.0,
+            "area": 17.4,
+            "description": "Căn nhỏ phù hợp người ở một mình."
+          },
+          {
+            "id": "room_11_3",
+            "name": "Khu kỹ thuật (T12)",
+            "type": "service",
+            "x": 3.08,
+            "z": -0.15,
+            "w": 2.72,
+            "d": 4.0,
+            "area": 10.9,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng."
+          }
+        ]
+      }
+    ],
+    "room_types": [
+      "apartment",
+      "service"
+    ]
+  }
+}
