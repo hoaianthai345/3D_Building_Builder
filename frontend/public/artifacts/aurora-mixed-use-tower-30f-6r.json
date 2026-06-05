@@ -40,8 +40,8 @@
   "model": {
     "glb": "aurora-mixed-use-tower-30f-6r.glb",
     "backend": "procedural",
-    "tri_count": 11172,
-    "size_kb": 475.2
+    "tri_count": 19092,
+    "size_kb": 843.4
   },
   "meta": {
     "llm_provider": "mock",

@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import argparse
 
-from .pipeline import generate
+from .pipeline import generate, generate_from_image
 from .schemas import GenerateRequest, SpaceType
 
 
@@ -27,6 +27,8 @@ def main() -> None:
     p.add_argument("--rooms", type=int, default=None, dest="rooms_per_floor")
     p.add_argument("--occupancy", type=int, default=None)
     p.add_argument("--out", default="artifacts", help="Thư mục xuất artifact")
+    p.add_argument("--image", default=None,
+                   help="Ảnh đầu vào -> backend generative (TRELLIS, cần GPU). Bỏ trống = procedural (CPU).")
     args = p.parse_args()
 
     req = GenerateRequest(
@@ -38,7 +40,10 @@ def main() -> None:
         rooms_per_floor=args.rooms_per_floor,
         occupancy=args.occupancy,
     )
-    bundle = generate(req, out_dir=args.out)
+    if args.image:  # generative backend (GPU)
+        bundle = generate_from_image(req, args.image, out_dir=args.out)
+    else:           # procedural backend (CPU, default)
+        bundle = generate(req, out_dir=args.out)
     print(f"[ok] {bundle.id}")
     print(f"     spec   : {bundle.spec.floors} tầng x {bundle.spec.rooms_per_floor} phòng, "
           f"{bundle.spec.footprint_w}x{bundle.spec.footprint_d} m")

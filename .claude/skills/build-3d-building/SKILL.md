@@ -61,6 +61,17 @@ rewrites `Room.name`/`Room.description` (rich Vietnamese, per floor) and
 Future images live at `frontend/public/artifacts/<id>/pano/<room_id>.jpg`; when
 generated, set `panorama.image` to that path and `panorama.status = "ready"`.
 
+## Mode C — Generative backend (GPU, TRELLIS image->3D)
+Realistic single mesh from a building image (NO per-room drill-down). GPU only;
+run on Colab (`colab/trellis_build.ipynb`). On a GPU machine:
+```bash
+python -m builder.run --name "..." --space office --image building.jpg --out frontend/public/artifacts
+```
+Produces a SceneBundle with `model.backend="generative"`, `structure=None` (the
+frontend shows it in the plain model viewer). The procedural backend (Mode A, CPU)
+is the default and works everywhere with a detailed curtain-wall shell + drill-down;
+pick generative only when you want a photoreal-ish mesh and have a GPU + input image.
+
 ## LLM provider (subscription note)
 - Default `LLM_PROVIDER=mock`: offline, free, deterministic. Enough for geometry +
   baseline copy.

@@ -310,9 +310,14 @@ export default function DemoPage() {
             </div>
             {result && (
               <p className="text-xs text-[var(--text-faint)]">
-                {result.spec.floors} tầng x {result.spec.rooms_per_floor} phòng ·{" "}
+                {result.model.backend === "generative"
+                  ? "Mô hình AI (TRELLIS)"
+                  : `${result.spec.floors} tầng x ${result.spec.rooms_per_floor} phòng`} ·{" "}
                 {result.model.tri_count.toLocaleString("vi-VN")} tam giác · {result.model.size_kb} KB ·
-                LLM {result.meta.llm_provider} · Kéo để xoay, bấm vào phòng để xem chi tiết
+                LLM {result.meta.llm_provider}
+                {result.structure
+                  ? " · Kéo để xoay, bấm phòng để xem chi tiết"
+                  : " · Mô hình một khối, không có drill phòng"}
               </p>
             )}
 

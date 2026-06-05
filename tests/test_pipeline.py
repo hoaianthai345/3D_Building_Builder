@@ -1,7 +1,8 @@
 import os
 
-from builder.pipeline import generate, slugify
-from builder.schemas import GenerateRequest, SpaceType
+from builder import procedural
+from builder.pipeline import bundle_from_glb, generate, slugify
+from builder.schemas import BuildingSpec, GenerateRequest, SpaceType
 
 
 def test_slugify_strips_vietnamese_accents():
@@ -37,6 +38,25 @@ def test_generate_full_bundle(tmp_path):
     assert (tmp_path / f"{bundle.id}.glb").exists()
     assert (tmp_path / f"{bundle.id}.json").exists()
     assert (tmp_path / "index.json").exists()
+
+
+def test_bundle_from_glb_generative(tmp_path):
+    # build a glb, then wrap it as a generative-style bundle (no structure)
+    glb = tmp_path / "ext.glb"
+    procedural.build_glb(
+        BuildingSpec(space_type=SpaceType.office, floors=3, rooms_per_floor=4,
+                     occupancy=40, footprint_w=20, footprint_d=14),
+        str(glb))
+    req = GenerateRequest(project_name="Gen Tower", space_type=SpaceType.office,
+                          description="tòa nhà từ ảnh", target_audience="")
+    bundle = bundle_from_glb(req, str(glb), out_dir=str(tmp_path), backend="generative")
+
+    assert bundle.model.backend == "generative"
+    assert bundle.structure is None
+    assert bundle.model.tri_count > 0
+    assert 3 <= len(bundle.describer.highlights) <= 5
+    assert (tmp_path / f"{bundle.id}.glb").exists()
+    assert (tmp_path / f"{bundle.id}.json").exists()
 
 
 def test_explicit_params_override_description(tmp_path):

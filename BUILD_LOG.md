@@ -27,6 +27,7 @@ lưu ý số hóa. Repo: `hoaianthai345/3D_Building_Builder`.
 | 11 | 06-06 | Skill repo | Đóng gói pipeline thành skill tái dùng | `.claude/skills/build-3d-building/` |
 | 12 | 06-06 | Codex làm giàu Aurora + review | Codex enrich nội dung + prompt 360; contract-owner review PASS | `enrich_aurora.py`, JSON đã enrich |
 | 13 | 06-06 | Panorama 360 "Bước vào" (phase 2) | Viewer R3F (đổi từ photo-sphere-viewer do xung đột `three`); tool placeholder CPU + Skybox | `PanoramaViewer`, gen tools, 30 ảnh demo |
+| 14 | 06-06 | Realism: vỏ procedural + backend TRELLIS | Giữ procedural (CPU) nâng cấp curtain-wall + thêm generative (GPU); user chọn backend | Vỏ ngoài, `generate_from_image`, `trellis_build.ipynb` |
 
 ---
 
@@ -159,6 +160,22 @@ digitization_tips..." → kiểm tra bằng `DescriberOutput.model_validate` (é
   sang sphere R3F (cùng stack, không thêm dep). `@google/model-viewer` ghim peer `three^0.163`
   vs 0.171 → thêm `frontend/.npmrc` `legacy-peer-deps=true` để install sạch (local + Vercel).
 - **Kết quả:** build pass; chụp xác nhận panorama render đúng; ảnh 360 phục vụ HTTP 200.
+
+### Phiên 14 — Realism: vỏ procedural + backend TRELLIS (06-06)
+- **Bối cảnh:** phản hồi "demo 3D vô nghĩa, không kết cấu". Chọn giữ Hướng 1 (procedural,
+  CPU, chạy mọi máy) + thêm Hướng 4 (TRELLIS, GPU) + cho user chọn backend.
+- **Đã làm:**
+  - *Nâng procedural:* thêm **vỏ ngoài** curtain-wall (kính + mullion), slab tầng đua ra,
+    mái + parapet, canopy lối vào, mặt đất; nội thất inset bên trong. Explorer: nút **"Vỏ
+    ngoài"** (mặc định hiện ngoại thất; tách tầng / chọn tầng / ẩn vỏ để lộ phòng).
+  - *Backend generative:* `generative.image_to_glb` (TRELLIS, lazy import, CPU-safe),
+    `pipeline.bundle_from_glb` + `generate_from_image`, CLI `--image`, `colab/trellis_build.ipynb`.
+    Scene generative `structure=None` → frontend hiện model-viewer (không drill).
+- **Kết quả:** procedural 5×6 ~3.5k tris/152KB (40×10 ~42k/1.85MB, 2.9s, vẫn CPU); tests
+  10/10; build pass; chụp xác nhận tòa nhà curtain-wall thật. Aurora rebuild GLB vỏ mới
+  giữ nguyên nội dung Codex.
+- **Khó khăn:** cân bằng realism vs tri-count (gói kính/mullion theo cột để chặn số mặt);
+  HMR dev hỏng sau nhiều đổi dep → xoá `.next` restart.
 
 ---
 

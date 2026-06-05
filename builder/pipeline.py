@@ -13,15 +13,18 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import unicodedata
 from typing import Optional
+
+import trimesh
 
 from . import procedural
 from .describer import describe
 from .llm import get_llm
 from .llm.base import LLMClient
 from .room_agent import plan_floor_programs
-from .schemas import ArtifactIndex, GenerateRequest, RunMeta, SceneBundle
+from .schemas import ArtifactIndex, GenerateRequest, ModelInfo, RunMeta, SceneBundle
 from .spec_agent import build_spec
 from .structure import build_structure
 
@@ -70,6 +73,66 @@ def generate(
     if update_index:
         _refresh_index(out_dir)
     return bundle
+
+
+def _tri_count(glb_path: str) -> int:
+    loaded = trimesh.load(glb_path)
+    if hasattr(loaded, "geometry"):
+        return int(sum(int(g.faces.shape[0]) for g in loaded.geometry.values()))
+    return int(loaded.faces.shape[0])
+
+
+def bundle_from_glb(
+    req: GenerateRequest,
+    glb_path: str,
+    out_dir: str = "artifacts",
+    llm: Optional[LLMClient] = None,
+    backend: str = "generative",
+) -> SceneBundle:
+    """Assemble a SceneBundle around an EXISTING GLB (e.g. a TRELLIS mesh).
+
+    Runs the CPU describer; no per-room structure (drill-down N/A for a single
+    generative mesh). Shared CPU half of ``generate_from_image``; also testable.
+    """
+    llm = llm or get_llm()
+    spec = build_spec(req, llm)
+    describer_out = describe(spec, req, llm)
+
+    os.makedirs(out_dir, exist_ok=True)
+    bundle_id = make_id(req, spec.floors, spec.rooms_per_floor)
+    dest = os.path.join(out_dir, f"{bundle_id}.glb")
+    if os.path.abspath(glb_path) != os.path.abspath(dest):
+        shutil.copyfile(glb_path, dest)
+
+    model_info = ModelInfo(glb=f"{bundle_id}.glb", backend=backend,
+                           tri_count=_tri_count(dest), size_kb=round(os.path.getsize(dest) / 1024.0, 1))
+    bundle = SceneBundle(
+        id=bundle_id, input=req, spec=spec, describer=describer_out,
+        model=model_info, meta=RunMeta(llm_provider=llm.name), structure=None,
+    )
+    with open(os.path.join(out_dir, f"{bundle_id}.json"), "w", encoding="utf-8") as fh:
+        json.dump(bundle.model_dump(mode="json"), fh, ensure_ascii=False, indent=2)
+    _refresh_index(out_dir)
+    return bundle
+
+
+def generate_from_image(
+    req: GenerateRequest,
+    image_path: str,
+    out_dir: str = "artifacts",
+    llm: Optional[LLMClient] = None,
+) -> SceneBundle:
+    """GPU path: image -> realistic mesh (TRELLIS) -> SceneBundle. Run on Colab/GPU."""
+    from . import generative
+
+    os.makedirs(out_dir, exist_ok=True)
+    tmp = os.path.join(out_dir, "_gen_tmp.glb")
+    generative.image_to_glb(image_path, tmp)
+    try:
+        return bundle_from_glb(req, tmp, out_dir, llm, backend="generative")
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
 
 
 def _refresh_index(out_dir: str) -> None:

@@ -45,7 +45,8 @@ def build_structure(spec: BuildingSpec, floor_programs: List[List[Dict[str, Any]
     for i in range(spec.floors):
         templates = floor_programs[i] if i < len(floor_programs) else floor_programs[-1]
         weights = [float(t["weight"]) for t in templates]
-        rects = plate_rooms(spec.footprint_w, spec.footprint_d, weights)
+        # inset interior so the exterior facade shell has room outside it
+        rects = plate_rooms(spec.footprint_w, spec.footprint_d, weights, margin=0.45)
 
         rooms: List[Room] = []
         for j, (t, (x, z, w, d)) in enumerate(zip(templates, rects)):

@@ -13,13 +13,12 @@ import {
 import { PanoramaViewer } from "./PanoramaViewer";
 import { XIcon } from "@phosphor-icons/react";
 
-// name -> floor index ("roof" for the cap, null for nothing structural)
-function floorOf(name: string): number | "roof" | null {
+// interior node -> floor index; null for exterior shell / non-floor nodes
+function floorOf(name: string): number | null {
   let m: RegExpMatchArray | null;
   if ((m = name.match(/^room_(\d+)_/))) return Number(m[1]);
   if ((m = name.match(/^wall_room_(\d+)_/))) return Number(m[1]);
   if ((m = name.match(/^floorplate_(\d+)/))) return Number(m[1]);
-  if (name === "roof") return "roof";
   return null;
 }
 
@@ -29,6 +28,7 @@ type ViewState = {
   section: boolean;
   sectionX: number;
   selectedId: string | null;
+  showShell: boolean;
 };
 
 function BuildingModel({
@@ -57,6 +57,7 @@ function BuildingModel({
       mesh.userData.origY = mesh.position.y;
       mesh.userData.floor = floorOf(mesh.name);
       mesh.userData.isRoom = /^room_\d+_/.test(mesh.name);
+      mesh.userData.isShell = mesh.name.startsWith("shell_");
       list.push(mesh);
     });
     return { scene: s, meshes: list };
@@ -71,17 +72,24 @@ function BuildingModel({
   useFrame(() => {
     const gap = floorHeight * 1.15;
     plane.constant = view.sectionX;
+    const interiorShown =
+      !view.showShell || view.explode > 0.02 || view.activeFloor != null;
     for (const o of meshes) {
-      const f = o.userData.floor as number | "roof" | null;
-      const idx = f === "roof" ? floors : typeof f === "number" ? f : 0;
+      const mat = o.material as THREE.MeshStandardMaterial;
+      mat.clippingPlanes = view.section ? [plane] : [];
+
+      if (o.userData.isShell) {
+        o.visible = view.showShell && view.explode < 0.02 && view.activeFloor == null;
+        continue;
+      }
+
+      const f = o.userData.floor as number | null;
+      const idx = typeof f === "number" ? f : 0;
       const targetY = o.userData.origY + idx * gap * view.explode;
       o.position.y += (targetY - o.position.y) * 0.22;
 
-      o.visible =
-        view.activeFloor == null ? true : f === view.activeFloor || f === null;
+      o.visible = view.activeFloor != null ? f === view.activeFloor : interiorShown;
 
-      const mat = o.material as THREE.MeshStandardMaterial;
-      mat.clippingPlanes = view.section ? [plane] : [];
       if (o.userData.isRoom && mat.emissive) {
         const sel = o.name === view.selectedId;
         mat.emissive.setHex(sel ? 0x1f4fc4 : 0x000000);
@@ -112,6 +120,7 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
     section: false,
     sectionX: 0,
     selectedId: null,
+    showShell: true,
   });
 
   const selectedRoom: Room | null = useMemo(() => {
@@ -174,6 +183,20 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
 
       {/* Controls */}
       <div className="absolute right-3 top-3 w-52 space-y-3 rounded-xl border border-[var(--border)] bg-white/92 p-3 text-xs shadow-[var(--shadow-md)] backdrop-blur">
+        <div className="flex items-center justify-between">
+          <label className="font-medium text-[var(--text)]">Vỏ ngoài</label>
+          <button
+            onClick={() => setView((v) => ({ ...v, showShell: !v.showShell }))}
+            className={`rounded-full px-2 py-0.5 text-[11px] ${
+              view.showShell
+                ? "bg-[var(--accent-strong)] text-white"
+                : "border border-[var(--border-strong)] text-[var(--text-muted)]"
+            }`}
+          >
+            {view.showShell ? "Hiện" : "Ẩn"}
+          </button>
+        </div>
+
         <div>
           <label className="mb-1 block font-medium text-[var(--text)]">Tách tầng</label>
           <input
