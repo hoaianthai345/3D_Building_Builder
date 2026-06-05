@@ -20,7 +20,7 @@ from . import procedural
 from .describer import describe
 from .llm import get_llm
 from .llm.base import LLMClient
-from .room_agent import plan_rooms
+from .room_agent import plan_floor_programs
 from .schemas import ArtifactIndex, GenerateRequest, RunMeta, SceneBundle
 from .spec_agent import build_spec
 from .structure import build_structure
@@ -44,8 +44,8 @@ def generate(
 ) -> SceneBundle:
     llm = llm or get_llm()
     spec = build_spec(req, llm)
-    room_templates = plan_rooms(spec, req, llm)
-    structure = build_structure(spec, room_templates)
+    floor_programs = plan_floor_programs(spec, req, llm)
+    structure = build_structure(spec, floor_programs)
 
     os.makedirs(out_dir, exist_ok=True)
     bundle_id = make_id(req, spec.floors, spec.rooms_per_floor)

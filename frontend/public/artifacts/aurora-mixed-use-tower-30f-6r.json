@@ -1,0 +1,3154 @@
+{
+  "id": "aurora-mixed-use-tower-30f-6r",
+  "version": "1.1",
+  "input": {
+    "project_name": "Aurora Mixed-Use Tower",
+    "space_type": "mixed",
+    "description": "Phức hợp đa năng 30 tầng tại trung tâm: 3 tầng đế bán lẻ và F&B, các tầng văn phòng phía trên, khối căn hộ trên cùng, sức chứa khoảng 2500 người",
+    "target_audience": "Nhà đầu tư bất động sản, khách thuê văn phòng và cư dân cao cấp",
+    "floors": 30,
+    "rooms_per_floor": 6,
+    "occupancy": 2500
+  },
+  "spec": {
+    "space_type": "mixed",
+    "floors": 30,
+    "rooms_per_floor": 6,
+    "occupancy": 2500,
+    "footprint_w": 14.2,
+    "footprint_d": 9.5,
+    "floor_height": 3.2,
+    "layout_hint": "central-core",
+    "palette": "blue"
+  },
+  "describer": {
+    "title": "Aurora Mixed-Use Tower — Không gian phức hợp đa năng 30 tầng hiện đại",
+    "summary": "Aurora Mixed-Use Tower là phức hợp đa năng quy mô 30 tầng, mỗi tầng khoảng 6 phòng, sức chứa chừng 2500 người hướng tới Nhà đầu tư bất động sản, khách thuê văn phòng và cư dân cao cấp. Mô hình được tổ chức quanh lõi giao thông trung tâm với mặt đứng nhịp cửa đều, tối ưu ánh sáng tự nhiên và tạo nhận diện chuyên nghiệp ngay từ ấn tượng đầu tiên.",
+    "highlights": [
+      "Khối đế bán lẻ kết hợp khối tháp văn phòng/ở tạo dòng tiền đa lớp",
+      "Phân tầng chức năng rõ ràng giúp vận hành và an ninh tách biệt",
+      "Mặt đứng đồng bộ giữ nhận diện thống nhất cho cả phức hợp",
+      "Quy mô 30 tầng, 2500 người khai thác công năng cả ngày"
+    ],
+    "digitization_tips": [
+      "Tách quy trình số hóa theo từng khối chức năng để dễ kiểm soát chất lượng",
+      "Đồng bộ hệ tọa độ chung giữa khối đế và khối tháp trước khi ghép",
+      "Chụp kỹ ranh giới chuyển tầng công năng vì hình học ở đó phức tạp"
+    ]
+  },
+  "model": {
+    "glb": "aurora-mixed-use-tower-30f-6r.glb",
+    "backend": "procedural",
+    "tri_count": 11172,
+    "size_kb": 475.2
+  },
+  "meta": {
+    "llm_provider": "mock",
+    "build_ms": 162.9,
+    "created_at": "2026-06-05T17:04:48.456752+00:00"
+  },
+  "structure": {
+    "floors": [
+      {
+        "index": 0,
+        "name": "Tầng 1",
+        "elevation": 0.0,
+        "rooms": [
+          {
+            "id": "room_0_0",
+            "name": "Gian hàng lớn (T1)",
+            "type": "shop",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.37,
+            "d": 6.11,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_0_1",
+            "name": "Gian hàng nhỏ (T1)",
+            "type": "shop",
+            "x": -7.1,
+            "z": 1.36,
+            "w": 5.37,
+            "d": 3.39,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_0_2",
+            "name": "Khu F&B (T1)",
+            "type": "fnb",
+            "x": -1.73,
+            "z": -4.75,
+            "w": 6.38,
+            "d": 3.72,
+            "area": 23.7,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_0_3",
+            "name": "Khu kỹ thuật (T1)",
+            "type": "service",
+            "x": 4.65,
+            "z": -4.75,
+            "w": 2.45,
+            "d": 3.72,
+            "area": 9.1,
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_0_4",
+            "name": "Gian hàng lớn (T1)",
+            "type": "shop",
+            "x": -1.73,
+            "z": -1.03,
+            "w": 5.67,
+            "d": 5.78,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_0_5",
+            "name": "Gian hàng nhỏ (T1)",
+            "type": "shop",
+            "x": 3.95,
+            "z": -1.03,
+            "w": 3.15,
+            "d": 5.78,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Tầng 2",
+        "elevation": 3.2,
+        "rooms": [
+          {
+            "id": "room_1_0",
+            "name": "Gian hàng lớn (T2)",
+            "type": "shop",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.37,
+            "d": 6.11,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_1_1",
+            "name": "Gian hàng nhỏ (T2)",
+            "type": "shop",
+            "x": -7.1,
+            "z": 1.36,
+            "w": 5.37,
+            "d": 3.39,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_1_2",
+            "name": "Khu F&B (T2)",
+            "type": "fnb",
+            "x": -1.73,
+            "z": -4.75,
+            "w": 6.38,
+            "d": 3.72,
+            "area": 23.7,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_1_3",
+            "name": "Khu kỹ thuật (T2)",
+            "type": "service",
+            "x": 4.65,
+            "z": -4.75,
+            "w": 2.45,
+            "d": 3.72,
+            "area": 9.1,
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_1_4",
+            "name": "Gian hàng lớn (T2)",
+            "type": "shop",
+            "x": -1.73,
+            "z": -1.03,
+            "w": 5.67,
+            "d": 5.78,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_1_5",
+            "name": "Gian hàng nhỏ (T2)",
+            "type": "shop",
+            "x": 3.95,
+            "z": -1.03,
+            "w": 3.15,
+            "d": 5.78,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Tầng 3",
+        "elevation": 6.4,
+        "rooms": [
+          {
+            "id": "room_2_0",
+            "name": "Gian hàng lớn (T3)",
+            "type": "shop",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.37,
+            "d": 6.11,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_2_1",
+            "name": "Gian hàng nhỏ (T3)",
+            "type": "shop",
+            "x": -7.1,
+            "z": 1.36,
+            "w": 5.37,
+            "d": 3.39,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_2_2",
+            "name": "Khu F&B (T3)",
+            "type": "fnb",
+            "x": -1.73,
+            "z": -4.75,
+            "w": 6.38,
+            "d": 3.72,
+            "area": 23.7,
+            "description": "Khu ẩm thực và chỗ ngồi cho khách.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern cafe and food court interior with seating, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_2_3",
+            "name": "Khu kỹ thuật (T3)",
+            "type": "service",
+            "x": 4.65,
+            "z": -4.75,
+            "w": 2.45,
+            "d": 3.72,
+            "area": 9.1,
+            "description": "Kho và khu hậu cần cho gian hàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_2_4",
+            "name": "Gian hàng lớn (T3)",
+            "type": "shop",
+            "x": -1.73,
+            "z": -1.03,
+            "w": 5.67,
+            "d": 5.78,
+            "area": 32.8,
+            "description": "Gian thuê chính diện tích lớn, mặt tiền rộng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_2_5",
+            "name": "Gian hàng nhỏ (T3)",
+            "type": "shop",
+            "x": 3.95,
+            "z": -1.03,
+            "w": 3.15,
+            "d": 5.78,
+            "area": 18.2,
+            "description": "Gian thuê tiêu chuẩn cho thương hiệu nhỏ.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern retail shop interior with display shelves, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "name": "Tầng 4",
+        "elevation": 9.6,
+        "rooms": [
+          {
+            "id": "room_3_0",
+            "name": "Sảnh lễ tân (T4)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_3_1",
+            "name": "Khu làm việc mở (T4)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_3_2",
+            "name": "Phòng họp (T4)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_3_3",
+            "name": "Phòng quản lý (T4)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_3_4",
+            "name": "Pantry (T4)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_3_5",
+            "name": "Sảnh lễ tân (T4)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "name": "Tầng 5",
+        "elevation": 12.8,
+        "rooms": [
+          {
+            "id": "room_4_0",
+            "name": "Sảnh lễ tân (T5)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_4_1",
+            "name": "Khu làm việc mở (T5)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_4_2",
+            "name": "Phòng họp (T5)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_4_3",
+            "name": "Phòng quản lý (T5)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_4_4",
+            "name": "Pantry (T5)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_4_5",
+            "name": "Sảnh lễ tân (T5)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "name": "Tầng 6",
+        "elevation": 16.0,
+        "rooms": [
+          {
+            "id": "room_5_0",
+            "name": "Sảnh lễ tân (T6)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_5_1",
+            "name": "Khu làm việc mở (T6)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_5_2",
+            "name": "Phòng họp (T6)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_5_3",
+            "name": "Phòng quản lý (T6)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_5_4",
+            "name": "Pantry (T6)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_5_5",
+            "name": "Sảnh lễ tân (T6)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "name": "Tầng 7",
+        "elevation": 19.2,
+        "rooms": [
+          {
+            "id": "room_6_0",
+            "name": "Sảnh lễ tân (T7)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_6_1",
+            "name": "Khu làm việc mở (T7)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_6_2",
+            "name": "Phòng họp (T7)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_6_3",
+            "name": "Phòng quản lý (T7)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_6_4",
+            "name": "Pantry (T7)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_6_5",
+            "name": "Sảnh lễ tân (T7)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "name": "Tầng 8",
+        "elevation": 22.4,
+        "rooms": [
+          {
+            "id": "room_7_0",
+            "name": "Sảnh lễ tân (T8)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_7_1",
+            "name": "Khu làm việc mở (T8)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_7_2",
+            "name": "Phòng họp (T8)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_7_3",
+            "name": "Phòng quản lý (T8)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_7_4",
+            "name": "Pantry (T8)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_7_5",
+            "name": "Sảnh lễ tân (T8)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "name": "Tầng 9",
+        "elevation": 25.6,
+        "rooms": [
+          {
+            "id": "room_8_0",
+            "name": "Sảnh lễ tân (T9)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_8_1",
+            "name": "Khu làm việc mở (T9)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_8_2",
+            "name": "Phòng họp (T9)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_8_3",
+            "name": "Phòng quản lý (T9)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_8_4",
+            "name": "Pantry (T9)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_8_5",
+            "name": "Sảnh lễ tân (T9)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "name": "Tầng 10",
+        "elevation": 28.8,
+        "rooms": [
+          {
+            "id": "room_9_0",
+            "name": "Sảnh lễ tân (T10)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_9_1",
+            "name": "Khu làm việc mở (T10)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_9_2",
+            "name": "Phòng họp (T10)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_9_3",
+            "name": "Phòng quản lý (T10)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_9_4",
+            "name": "Pantry (T10)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_9_5",
+            "name": "Sảnh lễ tân (T10)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "name": "Tầng 11",
+        "elevation": 32.0,
+        "rooms": [
+          {
+            "id": "room_10_0",
+            "name": "Sảnh lễ tân (T11)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_10_1",
+            "name": "Khu làm việc mở (T11)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_10_2",
+            "name": "Phòng họp (T11)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_10_3",
+            "name": "Phòng quản lý (T11)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_10_4",
+            "name": "Pantry (T11)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_10_5",
+            "name": "Sảnh lễ tân (T11)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "name": "Tầng 12",
+        "elevation": 35.2,
+        "rooms": [
+          {
+            "id": "room_11_0",
+            "name": "Sảnh lễ tân (T12)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_11_1",
+            "name": "Khu làm việc mở (T12)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_11_2",
+            "name": "Phòng họp (T12)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_11_3",
+            "name": "Phòng quản lý (T12)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_11_4",
+            "name": "Pantry (T12)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_11_5",
+            "name": "Sảnh lễ tân (T12)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 12,
+        "name": "Tầng 13",
+        "elevation": 38.4,
+        "rooms": [
+          {
+            "id": "room_12_0",
+            "name": "Sảnh lễ tân (T13)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_12_1",
+            "name": "Khu làm việc mở (T13)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_12_2",
+            "name": "Phòng họp (T13)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_12_3",
+            "name": "Phòng quản lý (T13)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_12_4",
+            "name": "Pantry (T13)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_12_5",
+            "name": "Sảnh lễ tân (T13)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "name": "Tầng 14",
+        "elevation": 41.6,
+        "rooms": [
+          {
+            "id": "room_13_0",
+            "name": "Sảnh lễ tân (T14)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_13_1",
+            "name": "Khu làm việc mở (T14)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_13_2",
+            "name": "Phòng họp (T14)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_13_3",
+            "name": "Phòng quản lý (T14)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_13_4",
+            "name": "Pantry (T14)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_13_5",
+            "name": "Sảnh lễ tân (T14)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "name": "Tầng 15",
+        "elevation": 44.8,
+        "rooms": [
+          {
+            "id": "room_14_0",
+            "name": "Sảnh lễ tân (T15)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_14_1",
+            "name": "Khu làm việc mở (T15)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_14_2",
+            "name": "Phòng họp (T15)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_14_3",
+            "name": "Phòng quản lý (T15)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_14_4",
+            "name": "Pantry (T15)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_14_5",
+            "name": "Sảnh lễ tân (T15)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "name": "Tầng 16",
+        "elevation": 48.0,
+        "rooms": [
+          {
+            "id": "room_15_0",
+            "name": "Sảnh lễ tân (T16)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_15_1",
+            "name": "Khu làm việc mở (T16)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_15_2",
+            "name": "Phòng họp (T16)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_15_3",
+            "name": "Phòng quản lý (T16)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_15_4",
+            "name": "Pantry (T16)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_15_5",
+            "name": "Sảnh lễ tân (T16)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "name": "Tầng 17",
+        "elevation": 51.2,
+        "rooms": [
+          {
+            "id": "room_16_0",
+            "name": "Sảnh lễ tân (T17)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_16_1",
+            "name": "Khu làm việc mở (T17)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_16_2",
+            "name": "Phòng họp (T17)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_16_3",
+            "name": "Phòng quản lý (T17)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_16_4",
+            "name": "Pantry (T17)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_16_5",
+            "name": "Sảnh lễ tân (T17)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "name": "Tầng 18",
+        "elevation": 54.4,
+        "rooms": [
+          {
+            "id": "room_17_0",
+            "name": "Sảnh lễ tân (T18)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_17_1",
+            "name": "Khu làm việc mở (T18)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_17_2",
+            "name": "Phòng họp (T18)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_17_3",
+            "name": "Phòng quản lý (T18)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_17_4",
+            "name": "Pantry (T18)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_17_5",
+            "name": "Sảnh lễ tân (T18)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 18,
+        "name": "Tầng 19",
+        "elevation": 57.6,
+        "rooms": [
+          {
+            "id": "room_18_0",
+            "name": "Sảnh lễ tân (T19)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_18_1",
+            "name": "Khu làm việc mở (T19)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_18_2",
+            "name": "Phòng họp (T19)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_18_3",
+            "name": "Phòng quản lý (T19)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_18_4",
+            "name": "Pantry (T19)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_18_5",
+            "name": "Sảnh lễ tân (T19)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 19,
+        "name": "Tầng 20",
+        "elevation": 60.8,
+        "rooms": [
+          {
+            "id": "room_19_0",
+            "name": "Sảnh lễ tân (T20)",
+            "type": "reception",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 6.61,
+            "d": 3.91,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_19_1",
+            "name": "Khu làm việc mở (T20)",
+            "type": "open_work",
+            "x": -7.1,
+            "z": -0.84,
+            "w": 6.61,
+            "d": 5.59,
+            "area": 37.0,
+            "description": "Không gian làm việc linh hoạt nhiều chỗ ngồi.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern open-plan office workspace with rows of desks, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_19_2",
+            "name": "Phòng họp (T20)",
+            "type": "meeting",
+            "x": -0.49,
+            "z": -4.75,
+            "w": 3.99,
+            "d": 4.63,
+            "area": 18.5,
+            "description": "Phòng họp kín cho trao đổi nhóm.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern meeting room with a conference table and chairs, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_19_3",
+            "name": "Phòng quản lý (T20)",
+            "type": "manager",
+            "x": 3.51,
+            "z": -4.75,
+            "w": 3.59,
+            "d": 4.63,
+            "area": 16.6,
+            "description": "Phòng làm việc riêng cho cấp quản lý.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a private manager office with a desk and window, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_19_4",
+            "name": "Pantry (T20)",
+            "type": "service",
+            "x": -0.49,
+            "z": -0.12,
+            "w": 2.28,
+            "d": 4.87,
+            "area": 11.1,
+            "description": "Khu pha chế và nghỉ ngắn cho nhân viên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_19_5",
+            "name": "Sảnh lễ tân (T20)",
+            "type": "reception",
+            "x": 1.79,
+            "z": -0.12,
+            "w": 5.31,
+            "d": 4.87,
+            "area": 25.9,
+            "description": "Khu đón tiếp và chờ, tạo ấn tượng đầu tiên.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern building reception lobby with a welcome desk, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "name": "Tầng 21",
+        "elevation": 64.0,
+        "rooms": [
+          {
+            "id": "room_20_0",
+            "name": "Căn hộ góc (T21)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_20_1",
+            "name": "Căn hộ tiêu chuẩn (T21)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_20_2",
+            "name": "Căn studio (T21)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_20_3",
+            "name": "Khu kỹ thuật (T21)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_20_4",
+            "name": "Căn hộ góc (T21)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_20_5",
+            "name": "Căn hộ tiêu chuẩn (T21)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "name": "Tầng 22",
+        "elevation": 67.2,
+        "rooms": [
+          {
+            "id": "room_21_0",
+            "name": "Căn hộ góc (T22)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_21_1",
+            "name": "Căn hộ tiêu chuẩn (T22)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_21_2",
+            "name": "Căn studio (T22)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_21_3",
+            "name": "Khu kỹ thuật (T22)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_21_4",
+            "name": "Căn hộ góc (T22)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_21_5",
+            "name": "Căn hộ tiêu chuẩn (T22)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "name": "Tầng 23",
+        "elevation": 70.4,
+        "rooms": [
+          {
+            "id": "room_22_0",
+            "name": "Căn hộ góc (T23)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_22_1",
+            "name": "Căn hộ tiêu chuẩn (T23)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_22_2",
+            "name": "Căn studio (T23)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_22_3",
+            "name": "Khu kỹ thuật (T23)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_22_4",
+            "name": "Căn hộ góc (T23)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_22_5",
+            "name": "Căn hộ tiêu chuẩn (T23)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "name": "Tầng 24",
+        "elevation": 73.6,
+        "rooms": [
+          {
+            "id": "room_23_0",
+            "name": "Căn hộ góc (T24)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_23_1",
+            "name": "Căn hộ tiêu chuẩn (T24)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_23_2",
+            "name": "Căn studio (T24)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_23_3",
+            "name": "Khu kỹ thuật (T24)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_23_4",
+            "name": "Căn hộ góc (T24)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_23_5",
+            "name": "Căn hộ tiêu chuẩn (T24)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "name": "Tầng 25",
+        "elevation": 76.8,
+        "rooms": [
+          {
+            "id": "room_24_0",
+            "name": "Căn hộ góc (T25)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_24_1",
+            "name": "Căn hộ tiêu chuẩn (T25)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_24_2",
+            "name": "Căn studio (T25)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_24_3",
+            "name": "Khu kỹ thuật (T25)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_24_4",
+            "name": "Căn hộ góc (T25)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_24_5",
+            "name": "Căn hộ tiêu chuẩn (T25)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "name": "Tầng 26",
+        "elevation": 80.0,
+        "rooms": [
+          {
+            "id": "room_25_0",
+            "name": "Căn hộ góc (T26)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_25_1",
+            "name": "Căn hộ tiêu chuẩn (T26)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_25_2",
+            "name": "Căn studio (T26)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_25_3",
+            "name": "Khu kỹ thuật (T26)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_25_4",
+            "name": "Căn hộ góc (T26)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_25_5",
+            "name": "Căn hộ tiêu chuẩn (T26)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "name": "Tầng 27",
+        "elevation": 83.2,
+        "rooms": [
+          {
+            "id": "room_26_0",
+            "name": "Căn hộ góc (T27)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_26_1",
+            "name": "Căn hộ tiêu chuẩn (T27)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_26_2",
+            "name": "Căn studio (T27)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_26_3",
+            "name": "Khu kỹ thuật (T27)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_26_4",
+            "name": "Căn hộ góc (T27)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_26_5",
+            "name": "Căn hộ tiêu chuẩn (T27)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "name": "Tầng 28",
+        "elevation": 86.4,
+        "rooms": [
+          {
+            "id": "room_27_0",
+            "name": "Căn hộ góc (T28)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_27_1",
+            "name": "Căn hộ tiêu chuẩn (T28)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_27_2",
+            "name": "Căn studio (T28)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_27_3",
+            "name": "Khu kỹ thuật (T28)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_27_4",
+            "name": "Căn hộ góc (T28)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_27_5",
+            "name": "Căn hộ tiêu chuẩn (T28)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "name": "Tầng 29",
+        "elevation": 89.6,
+        "rooms": [
+          {
+            "id": "room_28_0",
+            "name": "Căn hộ góc (T29)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_28_1",
+            "name": "Căn hộ tiêu chuẩn (T29)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_28_2",
+            "name": "Căn studio (T29)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_28_3",
+            "name": "Khu kỹ thuật (T29)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_28_4",
+            "name": "Căn hộ góc (T29)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_28_5",
+            "name": "Căn hộ tiêu chuẩn (T29)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "name": "Tầng 30",
+        "elevation": 92.8,
+        "rooms": [
+          {
+            "id": "room_29_0",
+            "name": "Căn hộ góc (T30)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": -4.75,
+            "w": 5.76,
+            "d": 5.43,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_29_1",
+            "name": "Căn hộ tiêu chuẩn (T30)",
+            "type": "apartment",
+            "x": -7.1,
+            "z": 0.68,
+            "w": 5.76,
+            "d": 4.07,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_29_2",
+            "name": "Căn studio (T30)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -4.75,
+            "w": 5.19,
+            "d": 3.01,
+            "area": 15.6,
+            "description": "Căn nhỏ phù hợp người ở một mình.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_29_3",
+            "name": "Khu kỹ thuật (T30)",
+            "type": "service",
+            "x": 3.85,
+            "z": -4.75,
+            "w": 3.25,
+            "d": 3.01,
+            "area": 9.8,
+            "description": "Hộp kỹ thuật và lõi thang chung tầng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a building service and pantry utility room, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_29_4",
+            "name": "Căn hộ góc (T30)",
+            "type": "apartment",
+            "x": -1.34,
+            "z": -1.74,
+            "w": 4.82,
+            "d": 6.49,
+            "area": 31.3,
+            "description": "Căn hộ góc hai mặt thoáng, nhiều ánh sáng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          },
+          {
+            "id": "room_29_5",
+            "name": "Căn hộ tiêu chuẩn (T30)",
+            "type": "apartment",
+            "x": 3.48,
+            "z": -1.74,
+            "w": 3.62,
+            "d": 6.49,
+            "area": 23.5,
+            "description": "Căn hộ điển hình bố cục gọn gàng.",
+            "panorama": {
+              "prompt": "360 equirectangular interior panorama of a modern furnished apartment living space, natural daylight, photorealistic, wide angle, no people",
+              "image": "",
+              "status": "pending"
+            }
+          }
+        ]
+      }
+    ],
+    "room_types": [
+      "apartment",
+      "fnb",
+      "manager",
+      "meeting",
+      "open_work",
+      "reception",
+      "service",
+      "shop"
+    ]
+  }
+}

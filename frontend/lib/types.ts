@@ -44,6 +44,12 @@ export interface RunMeta {
   created_at: string;
 }
 
+export interface Panorama {
+  prompt: string;
+  image: string;
+  status: string; // "pending" | "ready"
+}
+
 export interface Room {
   id: string;
   name: string;
@@ -54,6 +60,7 @@ export interface Room {
   d: number;
   area: number;
   description: string;
+  panorama?: Panorama | null;
 }
 
 export interface Floor {

@@ -113,6 +113,15 @@ class RunMeta(BaseModel):
 # --------------------------------------------------------------------------- #
 # 4b. Structure tree — drives the "drill into floors/rooms" explorer (v1.1)   #
 # --------------------------------------------------------------------------- #
+class Panorama(BaseModel):
+    """360 asset hook for the "step inside" tour (phase 2). The builder seeds a
+    prompt; an image generator (e.g. Skybox AI) later fills ``image`` + status."""
+
+    prompt: str = ""             # text-to-360 prompt for this room
+    image: str = ""              # filename/URL once generated (pano/<room_id>.jpg)
+    status: str = "pending"      # pending | ready
+
+
 class Room(BaseModel):
     """One room on a floor plate. Rectangle in meters on the XZ plane, with the
     building centered at the origin (x,z = min corner; w along X, d along Z)."""
@@ -126,6 +135,7 @@ class Room(BaseModel):
     d: float
     area: float = Field(0.0, ge=0)
     description: str = ""
+    panorama: Optional[Panorama] = None
 
 
 class Floor(BaseModel):
