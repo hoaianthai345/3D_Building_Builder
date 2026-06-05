@@ -61,12 +61,20 @@ rewrites `Room.name`/`Room.description` (rich Vietnamese, per floor) and
 Future images live at `frontend/public/artifacts/<id>/pano/<room_id>.jpg`; when
 generated, set `panorama.image` to that path and `panorama.status = "ready"`.
 
-## Mode C — Generative backend (GPU, TRELLIS image->3D)
-Realistic single mesh from a building image (NO per-room drill-down). GPU only;
-run on Colab (`colab/trellis_build.ipynb`). On a GPU machine:
-```bash
-python -m builder.run --name "..." --space office --image building.jpg --out frontend/public/artifacts
-```
+## Mode C — Generative backend (image -> realistic mesh)
+Realistic single mesh from a building image (NO per-room drill-down).
+
+Most robust path (no env hell): generate the GLB on a hosted Space, then assemble
+the bundle on a clean CPU machine:
+1. Upload the image at a Space and download the GLB — TRELLIS
+   (https://huggingface.co/spaces/microsoft/TRELLIS) or Hunyuan3D-2.1
+   (https://huggingface.co/spaces/tencent/Hunyuan3D-2.1).
+2. `python -m builder.run --from-glb building.glb --name "..." --space office --out frontend/public/artifacts`
+
+Self-hosted GPU alternative (Colab, fragile): `colab/trellis_build.ipynb` runs only
+TRELLIS to export building.glb (no builder import). Or, on a clean GPU machine with
+TRELLIS installed: `python -m builder.run --name "..." --image building.jpg`. Avoid
+installing repo deps into the TRELLIS env (Pillow/NumPy ABI conflicts).
 Produces a SceneBundle with `model.backend="generative"`, `structure=None` (the
 frontend shows it in the plain model viewer). The procedural backend (Mode A, CPU)
 is the default and works everywhere with a detailed curtain-wall shell + drill-down;
