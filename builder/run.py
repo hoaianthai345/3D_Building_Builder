@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import argparse
 
-from .pipeline import generate, generate_from_image
+from .pipeline import bundle_from_glb, generate, generate_from_image
 from .schemas import GenerateRequest, SpaceType
 
 
@@ -29,6 +29,8 @@ def main() -> None:
     p.add_argument("--out", default="artifacts", help="Thư mục xuất artifact")
     p.add_argument("--image", default=None,
                    help="Ảnh đầu vào -> backend generative (TRELLIS, cần GPU). Bỏ trống = procedural (CPU).")
+    p.add_argument("--from-glb", default=None, dest="from_glb",
+                   help="Lắp bundle (CPU) quanh một GLB sẵn có (vd GLB do TRELLIS xuất trên Colab).")
     args = p.parse_args()
 
     req = GenerateRequest(
@@ -40,9 +42,11 @@ def main() -> None:
         rooms_per_floor=args.rooms_per_floor,
         occupancy=args.occupancy,
     )
-    if args.image:  # generative backend (GPU)
+    if args.from_glb:    # assemble a bundle around an existing GLB (CPU)
+        bundle = bundle_from_glb(req, args.from_glb, out_dir=args.out, backend="generative")
+    elif args.image:     # generative backend (GPU, TRELLIS)
         bundle = generate_from_image(req, args.image, out_dir=args.out)
-    else:           # procedural backend (CPU, default)
+    else:                # procedural backend (CPU, default)
         bundle = generate(req, out_dir=args.out)
     print(f"[ok] {bundle.id}")
     print(f"     spec   : {bundle.spec.floors} tầng x {bundle.spec.rooms_per_floor} phòng, "
