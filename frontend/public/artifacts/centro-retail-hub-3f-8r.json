@@ -39,13 +39,13 @@
   "model": {
     "glb": "centro-retail-hub-3f-8r.glb",
     "backend": "procedural",
-    "tri_count": 2892,
-    "size_kb": 128.3
+    "tri_count": 3084,
+    "size_kb": 137.8
   },
   "meta": {
     "llm_provider": "mock",
-    "build_ms": 40.9,
-    "created_at": "2026-06-05T17:52:56.905655+00:00"
+    "build_ms": 58.9,
+    "created_at": "2026-06-06T04:27:42.042371+00:00"
   },
   "structure": {
     "floors": [

@@ -29,6 +29,7 @@ lưu ý số hóa. Repo: `hoaianthai345/3D_Building_Builder`.
 | 13 | 06-06 | Panorama 360 "Bước vào" (phase 2) | Viewer R3F (đổi từ photo-sphere-viewer do xung đột `three`); tool placeholder CPU + Skybox | `PanoramaViewer`, gen tools, 30 ảnh demo |
 | 14 | 06-06 | Realism: vỏ procedural + backend TRELLIS | Giữ procedural (CPU) nâng cấp curtain-wall + thêm generative (GPU); user chọn backend | Vỏ ngoài, `generate_from_image`, `trellis_build.ipynb` |
 | 15 | 06-06 | Generative robust + render realism R3F | TRELLIS Colab vỡ env (Pillow/NumPy) -> tách rời + HF Space; thêm lớp render archviz | `--from-glb`, HF Space, Environment/glass/shadows |
+| 16 | 06-06 | Realism Tier B: chi tiết vỏ + AO | Kính lõm + penthouse/thiết bị mái + trụ góc + cột tầng trệt; N8AO postprocessing | procedural shell chi tiết, `@react-three/postprocessing` |
 
 ---
 

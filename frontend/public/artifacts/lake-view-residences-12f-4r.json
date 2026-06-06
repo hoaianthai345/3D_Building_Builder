@@ -39,13 +39,13 @@
   "model": {
     "glb": "lake-view-residences-12f-4r.glb",
     "backend": "procedural",
-    "tri_count": 5484,
-    "size_kb": 252.6
+    "tri_count": 5628,
+    "size_kb": 257.0
   },
   "meta": {
     "llm_provider": "mock",
-    "build_ms": 95.5,
-    "created_at": "2026-06-05T17:52:56.583588+00:00"
+    "build_ms": 83.0,
+    "created_at": "2026-06-06T04:27:41.738479+00:00"
   },
   "structure": {
     "floors": [

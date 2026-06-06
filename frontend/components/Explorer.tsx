@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment, Lightformer, ContactShadows } from "@react-three/drei";
+import { EffectComposer, N8AO, ToneMapping } from "@react-three/postprocessing";
 import * as THREE from "three";
 import {
   type SceneBundle,
@@ -202,6 +203,10 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
           opacity={0.5}
           far={totalH}
         />
+        <EffectComposer multisampling={4}>
+          <N8AO aoRadius={1.6} intensity={1.4} distanceFalloff={1} />
+          <ToneMapping />
+        </EffectComposer>
         <OrbitControls makeDefault target={[0, totalH * 0.4, 0]} maxPolarAngle={Math.PI / 2.05} />
       </Canvas>
 

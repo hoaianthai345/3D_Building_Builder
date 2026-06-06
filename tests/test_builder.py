@@ -45,5 +45,5 @@ def test_model_height_matches_spec(tmp_path):
     build_glb(spec, str(out))
     scene = trimesh.load(str(out))
     height = scene.bounds[1][1] - scene.bounds[0][1]
-    # total height + roof cap (~0.3m), allow tolerance
-    assert abs(height - (spec.total_height + 0.3)) < 0.5
+    # reaches the top floor + roof, plus a rooftop penthouse (< ~2 storeys extra)
+    assert spec.total_height < height < spec.total_height + 2 * spec.floor_height

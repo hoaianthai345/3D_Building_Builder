@@ -96,6 +96,8 @@ def _add_shell(scene: trimesh.Scene, spec: BuildingSpec) -> None:
     glass = _hex_rgba(_GLASS_HEX, 0.7)
     mull = _hex_rgba(_MULLION_HEX)
     slab = _hex_rgba(_SLAB_HEX)
+    par = _hex_rgba(_PARAPET_HEX)
+    equip = _hex_rgba("#6b7078")
 
     # ground plane
     scene.add_geometry(_box((W * 3.4, 0.2, D * 3.4), (0, -0.1, 0), _hex_rgba(_GROUND_HEX)),
@@ -105,54 +107,71 @@ def _add_shell(scene: trimesh.Scene, spec: BuildingSpec) -> None:
     cw = (W - 2 * margin) / cols
     dcols = max(2, round((D - 2 * margin) / max(cw, 0.1)))
     dw = (D - 2 * margin) / dcols
+    z_glass, x_glass = D / 2 - 0.12, W / 2 - 0.12   # glazing recessed for facade depth
+    z_mull, x_mull = D / 2 + 0.05, W / 2 + 0.05     # mullions project in front of glass
 
     for i in range(spec.floors):
         y0 = i * fh
-        # overhanging floor slab band at the top of each storey
-        scene.add_geometry(_box((W + 0.5, 0.16, D + 0.5), (0, y0 + fh - 0.08, 0), slab),
+        # overhanging floor slab band (strong horizontal reading)
+        scene.add_geometry(_box((W + 0.55, 0.18, D + 0.55), (0, y0 + fh - 0.09, 0), slab),
                            geom_name=f"shell_slab_{i}")
         gy = y0 + fh * 0.5
         gh = fh * 0.74
-        # glazing on front/back (+Z/-Z)
         for c in range(cols):
             cx = -W / 2 + margin + cw * (c + 0.5)
             for zs in (1, -1):
-                scene.add_geometry(
-                    _box((cw * 0.86, gh, 0.1), (cx, gy, zs * (D / 2 + 0.02)), glass,
-                         roughness=0.2, metallic=0.1),
-                    geom_name=f"shell_glassZ_{i}_{c}_{'f' if zs > 0 else 'b'}")
-        # glazing on left/right (+X/-X)
+                scene.add_geometry(_box((cw * 0.9, gh, 0.08), (cx, gy, zs * z_glass), glass,
+                                        roughness=0.2, metallic=0.1),
+                                   geom_name=f"shell_glassZ_{i}_{c}_{'f' if zs > 0 else 'b'}")
         for c in range(dcols):
             cz = -D / 2 + margin + dw * (c + 0.5)
             for xs in (1, -1):
-                scene.add_geometry(
-                    _box((0.1, gh, dw * 0.86), (xs * (W / 2 + 0.02), gy, cz), glass,
-                         roughness=0.2, metallic=0.1),
-                    geom_name=f"shell_glassX_{i}_{c}_{'r' if xs > 0 else 'l'}")
+                scene.add_geometry(_box((0.08, gh, dw * 0.9), (xs * x_glass, gy, cz), glass,
+                                        roughness=0.2, metallic=0.1),
+                                   geom_name=f"shell_glassX_{i}_{c}_{'r' if xs > 0 else 'l'}")
 
-    # vertical mullions full height (front/back columns + side columns)
+    # vertical mullions (in front of the recessed glass)
     for c in range(cols + 1):
         x = -W / 2 + margin + cw * c
         for zs in (1, -1):
-            scene.add_geometry(_box((0.14, H, 0.14), (x, H / 2, zs * (D / 2 + 0.02)), mull, metallic=0.3),
+            scene.add_geometry(_box((0.12, H, 0.12), (x, H / 2, zs * z_mull), mull, metallic=0.3),
                                geom_name=f"shell_mullZ_{c}_{'f' if zs > 0 else 'b'}")
     for c in range(dcols + 1):
         z = -D / 2 + margin + dw * c
         for xs in (1, -1):
-            scene.add_geometry(_box((0.14, H, 0.14), (xs * (W / 2 + 0.02), H / 2, z), mull, metallic=0.3),
+            scene.add_geometry(_box((0.12, H, 0.12), (xs * x_mull, H / 2, z), mull, metallic=0.3),
                                geom_name=f"shell_mullX_{c}_{'r' if xs > 0 else 'l'}")
 
+    # solid corner pilasters (express the structure)
+    for sx in (1, -1):
+        for sz in (1, -1):
+            scene.add_geometry(_box((0.34, H, 0.34), (sx * (W / 2 + 0.03), H / 2, sz * (D / 2 + 0.03)), slab),
+                               geom_name=f"shell_pilaster_{'p' if sx > 0 else 'm'}{'p' if sz > 0 else 'm'}")
+
     # roof slab + parapet ring
-    scene.add_geometry(_box((W + 0.3, 0.18, D + 0.3), (0, H + 0.09, 0), slab), geom_name="shell_roof")
-    ph, py = 0.5, H + 0.25
-    par = _hex_rgba(_PARAPET_HEX)
-    scene.add_geometry(_box((W + 0.5, ph, 0.18), (0, py, D / 2 + 0.16), par), geom_name="shell_parapet_f")
-    scene.add_geometry(_box((W + 0.5, ph, 0.18), (0, py, -D / 2 - 0.16), par), geom_name="shell_parapet_b")
-    scene.add_geometry(_box((0.18, ph, D + 0.5), (W / 2 + 0.16, py, 0), par), geom_name="shell_parapet_r")
-    scene.add_geometry(_box((0.18, ph, D + 0.5), (-W / 2 - 0.16, py, 0), par), geom_name="shell_parapet_l")
+    scene.add_geometry(_box((W + 0.4, 0.2, D + 0.4), (0, H + 0.1, 0), slab), geom_name="shell_roof")
+    ph, py = 0.55, H + 0.28
+    scene.add_geometry(_box((W + 0.6, ph, 0.18), (0, py, D / 2 + 0.2), par), geom_name="shell_parapet_f")
+    scene.add_geometry(_box((W + 0.6, ph, 0.18), (0, py, -D / 2 - 0.2), par), geom_name="shell_parapet_b")
+    scene.add_geometry(_box((0.18, ph, D + 0.6), (W / 2 + 0.2, py, 0), par), geom_name="shell_parapet_r")
+    scene.add_geometry(_box((0.18, ph, D + 0.6), (-W / 2 - 0.2, py, 0), par), geom_name="shell_parapet_l")
+
+    # rooftop: stair/lift penthouse + HVAC equipment boxes
+    scene.add_geometry(_box((W * 0.34, fh * 1.1, D * 0.32), (-W * 0.12, H + 0.2 + fh * 0.55, D * 0.04), slab),
+                       geom_name="shell_penthouse")
+    for k, (ex, ez) in enumerate([(W * 0.22, -D * 0.2), (W * 0.28, D * 0.22), (-W * 0.28, -D * 0.22)]):
+        scene.add_geometry(_box((W * 0.14, fh * 0.45, D * 0.14), (ex, H + 0.2 + fh * 0.22, ez), equip),
+                           geom_name=f"shell_roofequip_{k}")
+
+    # ground-floor open lobby columns (front row)
+    ncol = max(3, cols)
+    for c in range(ncol):
+        cx = -W / 2 + margin + (W - 2 * margin) / (ncol - 1) * c
+        scene.add_geometry(_box((0.3, fh * 0.95, 0.3), (cx, fh * 0.48, D / 2 - 0.55), par),
+                           geom_name=f"shell_col_{c}")
 
     # entrance canopy at the ground floor front
-    scene.add_geometry(_box((W * 0.34, 0.12, 1.3), (0, fh * 0.92, D / 2 + 0.7), _hex_rgba(_CANOPY_HEX)),
+    scene.add_geometry(_box((W * 0.36, 0.14, 1.5), (0, fh * 0.95, D / 2 + 0.75), _hex_rgba(_CANOPY_HEX)),
                        geom_name="shell_canopy")
 
 
