@@ -28,6 +28,7 @@ lưu ý số hóa. Repo: `hoaianthai345/3D_Building_Builder`.
 | 12 | 06-06 | Codex làm giàu Aurora + review | Codex enrich nội dung + prompt 360; contract-owner review PASS | `enrich_aurora.py`, JSON đã enrich |
 | 13 | 06-06 | Panorama 360 "Bước vào" (phase 2) | Viewer R3F (đổi từ photo-sphere-viewer do xung đột `three`); tool placeholder CPU + Skybox | `PanoramaViewer`, gen tools, 30 ảnh demo |
 | 14 | 06-06 | Realism: vỏ procedural + backend TRELLIS | Giữ procedural (CPU) nâng cấp curtain-wall + thêm generative (GPU); user chọn backend | Vỏ ngoài, `generate_from_image`, `trellis_build.ipynb` |
+| 15 | 06-06 | Generative robust + render realism R3F | TRELLIS Colab vỡ env (Pillow/NumPy) -> tách rời + HF Space; thêm lớp render archviz | `--from-glb`, HF Space, Environment/glass/shadows |
 
 ---
 
@@ -176,6 +177,20 @@ digitization_tips..." → kiểm tra bằng `DescriberOutput.model_validate` (é
   giữ nguyên nội dung Codex.
 - **Khó khăn:** cân bằng realism vs tri-count (gói kính/mullion theo cột để chặn số mặt);
   HMR dev hỏng sau nhiều đổi dep → xoá `.next` restart.
+
+### Phiên 15 — Generative robust + render realism R3F (06-06)
+- **Generative trên Colab vỡ môi trường** (`_Ink` Pillow, `_center` NumPy ABI) do trộn deps
+  repo vào env TRELLIS. **Cách xử lý:** tách rời — GPU/Space chỉ xuất `building.glb`, lắp
+  bundle ở CPU sạch qua CLI `--from-glb`; ưu tiên **HuggingFace Space** (zero-setup:
+  TRELLIS/Hunyuan3D) thay vì tự cài Colab.
+- **Render realism (hướng A, đã chọn):** lớp R3F archviz lên chính GLB procedural — IBL
+  `<Environment>` bằng `<Lightformer>` (offline, không CDN) + kính `MeshPhysicalMaterial`
+  (phản chiếu/tint) + `directionalLight` đổ bóng + `<ContactShadows>` + `envMapIntensity`;
+  ACES tone-map mặc định R3F. **Zero dependency mới** (drei sẵn có).
+- **Kết quả:** tòa nhà nhìn như archviz (kính + khung + bóng + nền). Build pass.
+- **Khó khăn:** kính reflective bị đen trong ảnh chụp headless (swiftshader không dựng env
+  map) -> de-risk: kính có base màu + roughness cao + emissive nhẹ để không phụ thuộc env;
+  trình duyệt thật sẽ phản chiếu lightformers nên sáng/đẹp hơn ảnh headless.
 
 ---
 

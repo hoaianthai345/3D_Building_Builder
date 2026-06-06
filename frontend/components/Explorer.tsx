@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF, Environment, Lightformer, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import {
   type SceneBundle,
@@ -53,7 +53,26 @@ function BuildingModel({
     s.traverse((o) => {
       const mesh = o as THREE.Mesh;
       if (!mesh.isMesh) return;
-      mesh.material = (mesh.material as THREE.Material).clone();
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      if (mesh.name.includes("glass")) {
+        // tinted curtain-wall glass: reflective when an env map is present, but a
+        // blue base + slight emissive keeps it reading as glass even without one
+        mesh.material = new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color("#7799d6"),
+          metalness: 0.0,
+          roughness: 0.42,
+          envMapIntensity: 0.9,
+          clearcoat: 0.35,
+          clearcoatRoughness: 0.2,
+          emissive: new THREE.Color("#1a335f"),
+          emissiveIntensity: 0.18,
+        });
+      } else {
+        const m = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
+        if ("envMapIntensity" in m) m.envMapIntensity = 1.0;
+        mesh.material = m;
+      }
       mesh.userData.origY = mesh.position.y;
       mesh.userData.floor = floorOf(mesh.name);
       mesh.userData.isRoom = /^room_\d+_/.test(mesh.name);
@@ -112,6 +131,7 @@ function BuildingModel({
 export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: string }) {
   const floors = bundle.spec.floors;
   const totalH = bundle.spec.floors * bundle.spec.floor_height;
+  const footprint = Math.max(bundle.spec.footprint_w, bundle.spec.footprint_d);
   const artifactsBase = glbUrl.replace(/\/[^/]+\.glb$/, "");
   const [panoRoom, setPanoRoom] = useState<Room | null>(null);
   const [view, setView] = useState<ViewState>({
@@ -140,12 +160,32 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)]">
       <Canvas
+        shadows
+        dpr={[1, 2]}
         camera={{ position: [totalH * 1.6 + 8, totalH + 6, totalH * 1.8 + 10], fov: 42 }}
         onPointerMissed={() => setView((v) => ({ ...v, selectedId: null }))}
       >
-        <hemisphereLight args={[0xffffff, 0xb9b4a7, 1.0]} />
-        <directionalLight position={[10, 20, 8]} intensity={1.4} />
-        <directionalLight position={[-8, 10, -6]} intensity={0.5} />
+        <color attach="background" args={["#eef0f3"]} />
+        <ambientLight intensity={0.5} />
+        <directionalLight
+          castShadow
+          position={[totalH * 0.8 + 12, totalH * 1.6 + 22, totalH * 0.5 + 14]}
+          intensity={2.4}
+          shadow-mapSize={[2048, 2048]}
+          shadow-camera-near={1}
+          shadow-camera-far={totalH * 4 + 80}
+          shadow-camera-left={-(footprint * 2 + totalH)}
+          shadow-camera-right={footprint * 2 + totalH}
+          shadow-camera-top={totalH * 1.6 + 24}
+          shadow-camera-bottom={-12}
+          shadow-bias={-0.0004}
+        />
+        <Environment resolution={256}>
+          <Lightformer intensity={2.4} position={[0, totalH, -totalH]} scale={[totalH * 2, totalH, 1]} />
+          <Lightformer intensity={0.9} position={[-totalH, totalH * 0.6, totalH]} scale={[totalH, totalH, 1]} />
+          <Lightformer intensity={0.9} position={[totalH, totalH * 0.6, totalH]} scale={[totalH, totalH, 1]} />
+          <Lightformer form="ring" intensity={1.1} color="#fff3e6" position={[0, totalH * 1.5, 0]} scale={totalH} />
+        </Environment>
         <Suspense fallback={null}>
           <BuildingModel
             url={glbUrl}
@@ -155,6 +195,13 @@ export function Explorer({ bundle, glbUrl }: { bundle: SceneBundle; glbUrl: stri
             onPick={(id) => setView((v) => ({ ...v, selectedId: id }))}
           />
         </Suspense>
+        <ContactShadows
+          position={[0, 0.04, 0]}
+          scale={footprint * 4}
+          blur={2.4}
+          opacity={0.5}
+          far={totalH}
+        />
         <OrbitControls makeDefault target={[0, totalH * 0.4, 0]} maxPolarAngle={Math.PI / 2.05} />
       </Canvas>
 
