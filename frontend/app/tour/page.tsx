@@ -322,20 +322,24 @@ export default function TourPage() {
   const remoteSaveTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const remoteProjectStoreEnabled = useRef(!STATIC_MODE);
 
+  async function upsertRemoteProject(project: TourProject) {
+    const res = await fetch(`${API_BASE}/api/tour-projects/${encodeURIComponent(project.id)}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ project }),
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      throw new Error(typeof body?.detail === "string" ? body.detail : `Supabase ${res.status}`);
+    }
+  }
+
   function queueRemoteProjectSave(project: TourProject) {
     if (STATIC_MODE || !remoteProjectStoreEnabled.current) return;
     clearTimeout(remoteSaveTimers.current[project.id]);
     remoteSaveTimers.current[project.id] = setTimeout(async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/tour-projects/${encodeURIComponent(project.id)}`, {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ project }),
-        });
-        if (!res.ok) {
-          const body = await res.json().catch(() => null);
-          throw new Error(typeof body?.detail === "string" ? body.detail : `Supabase ${res.status}`);
-        }
+        await upsertRemoteProject(project);
         setProjectStoreStatus("supabase");
         setProjectStoreMessage("Đã đồng bộ dự án lên Supabase.");
       } catch (exc) {
@@ -362,6 +366,37 @@ export default function TourPage() {
     }
   }
 
+  async function migrateLocalProjectsToSupabase(
+    localProjects: TourProject[],
+    remoteProjects: TourProject[],
+  ): Promise<TourProject[]> {
+    const merged = new Map<string, TourProject>();
+    for (const project of remoteProjects) merged.set(project.id, project);
+
+    const toUpload: TourProject[] = [];
+    for (const local of localProjects) {
+      const remote = merged.get(local.id);
+      const localTime = Date.parse(local.updatedAt || "") || 0;
+      const remoteTime = Date.parse(remote?.updatedAt || "") || 0;
+      if (!remote || localTime >= remoteTime) {
+        merged.set(local.id, local);
+        toUpload.push(local);
+      }
+    }
+
+    for (const project of toUpload) {
+      await upsertRemoteProject(project);
+    }
+
+    const mergedProjects = Array.from(merged.values()).sort((a, b) => {
+      return (Date.parse(b.updatedAt || "") || 0) - (Date.parse(a.updatedAt || "") || 0);
+    });
+    if (toUpload.length > 0) {
+      setProjectStoreMessage(`Đã copy ${toUpload.length} project localStorage lên Supabase.`);
+    }
+    return mergedProjects;
+  }
+
   function persistProjects(next: TourProject[], syncRemote = true) {
     try {
       localStorage.setItem(PROJECT_STORAGE_KEY, JSON.stringify(next));
@@ -373,7 +408,7 @@ export default function TourPage() {
     }
   }
 
-  async function hydrateRemoteProjects() {
+  async function hydrateRemoteProjects(localProjects: TourProject[]) {
     if (STATIC_MODE) {
       remoteProjectStoreEnabled.current = false;
       setProjectStoreStatus("local");
@@ -396,20 +431,23 @@ export default function TourPage() {
       const remoteProjects = Array.isArray(body.projects)
         ? body.projects.filter((p: unknown): p is TourProject => Boolean(p && typeof p === "object" && (p as TourProject).id))
         : [];
+      const mergedProjects = await migrateLocalProjectsToSupabase(localProjects, remoteProjects);
       setProjectStoreStatus("supabase");
-      if (remoteProjects.length === 0) {
+      if (mergedProjects.length === 0) {
         setProjectStoreMessage("Supabase đã kết nối, chưa có project đã lưu.");
         return;
       }
-      setProjectStoreMessage(`Đã tải ${remoteProjects.length} project từ Supabase.`);
-      setProjects(remoteProjects);
-      setActiveProjectId(remoteProjects[0].id);
-      setProjectName(remoteProjects[0].name);
-      setIndustry(remoteProjects[0].industry);
-      setStops(remoteProjects[0].stops || []);
+      if (remoteProjects.length > 0 && mergedProjects.length === remoteProjects.length) {
+        setProjectStoreMessage(`Đã tải ${remoteProjects.length} project từ Supabase.`);
+      }
+      setProjects(mergedProjects);
+      setActiveProjectId(mergedProjects[0].id);
+      setProjectName(mergedProjects[0].name);
+      setIndustry(mergedProjects[0].industry);
+      setStops(mergedProjects[0].stops || []);
       setTour(null);
       setDraftTour(null);
-      localStorage.setItem(PROJECT_STORAGE_KEY, JSON.stringify(remoteProjects));
+      localStorage.setItem(PROJECT_STORAGE_KEY, JSON.stringify(mergedProjects));
     } catch (exc) {
       setProjectStoreStatus("error");
       setProjectStoreMessage(exc instanceof Error ? exc.message : "Không tải được project từ Supabase.");
@@ -430,7 +468,7 @@ export default function TourPage() {
     setIndustry(loaded[0].industry);
     setStops(loaded[0].stops || []);
     setHydrated(true);
-    void hydrateRemoteProjects();
+    void hydrateRemoteProjects(loaded);
   }, []);
 
   useEffect(() => {
