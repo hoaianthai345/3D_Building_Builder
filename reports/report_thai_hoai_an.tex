@@ -1,0 +1,315 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setmainlanguage{vietnamese}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+\setlength{\headheight}{16pt}
+
+\definecolor{primary}{HTML}{1F4FC4}
+\definecolor{textgray}{HTML}{555555}
+\definecolor{codebg}{HTML}{F6F6F6}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=primary,
+  urlcolor=primary,
+  citecolor=primary
+}
+
+\titleformat{\section}{\Large\bfseries\color{primary}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.2cm}
+\setlist[enumerate]{leftmargin=1.2cm}
+\renewcommand{\arraystretch}{1.25}
+
+\lstdefinestyle{code}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!15},
+  columns=fullflexible
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Bài kiểm tra năng lực ứng viên}
+\rhead{Thái Hoài An}
+\cfoot{\thepage}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{1.2cm}
+  {\Large\bfseries BÀI KIỂM TRA NĂNG LỰC ỨNG VIÊN\\[0.2cm]
+  THỰC TẬP SINH CÔNG NGHỆ\par}
+  \vspace{1.6cm}
+  {\Huge\bfseries AI Tour Guide Generator\par}
+  \vspace{0.4cm}
+  {\Large Mini AI tool hỗ trợ quản lý và tổ chức nội dung tour 3D/không gian số hóa\par}
+  \vspace{1.4cm}
+  \begin{tabular}{rl}
+    \textbf{Ứng viên:} & Thái Hoài An \\
+    \textbf{Vai trò ứng tuyển:} & Thực tập sinh công nghệ \\
+    \textbf{Hướng thực hiện:} & AI 3D Scene Describer mở rộng thành AI Tour Guide \\
+    \textbf{Source code:} & \url{https://github.com/hoaianthai345/3D_Building_Builder} \\
+    \textbf{Link deploy:} & Vercel frontend, backend cấu hình theo \texttt{NEXT\_PUBLIC\_API\_URL} \\
+  \end{tabular}
+  \vfill
+  {\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Tóm Tắt Sản Phẩm}
+
+Sản phẩm được xây dựng là \textbf{AI Tour Guide Generator}, một web app hỗ trợ tạo tour tham quan 3D có lời dẫn AI từ ảnh thường hoặc ảnh panorama. Công cụ tập trung vào bài toán quản lý và tổ chức nội dung không gian số hóa: người dùng tạo dự án tour, thêm các điểm dừng, để LLM phân tích hình ảnh, sinh mô tả từng view, tạo kịch bản hướng dẫn viên, chỉnh sửa nội dung và render giọng đọc nữ để phát lại trong trình xem tour toàn màn hình.
+
+So với yêu cầu tối thiểu của đề bài, sản phẩm vẫn đáp ứng hướng \textbf{Option A -- AI 3D Scene Describer}: mỗi ảnh/view được AI sinh tiêu đề, mô tả, 3--5 điểm nổi bật và nội dung thuyết minh phù hợp ngành. Phần mở rộng của sản phẩm là ghép các mô tả này thành một tour guide có audio và manifest để dùng lại.
+
+\section{Mục Tiêu Bài Làm}
+
+\begin{itemize}
+  \item Kiểm tra khả năng dùng AI/LLM để giải quyết bài toán gắn với sản phẩm thực tế: tổ chức nội dung không gian số hóa thành tour có lời dẫn.
+  \item Kiểm tra tư duy làm việc với dữ liệu 3D/panorama, frontend hiển thị kết quả và backend API xử lý request.
+  \item Kiểm tra khả năng triển khai tính năng nhỏ nhưng hoàn chỉnh: nhập liệu, validate, gọi API, xử lý lỗi, loading state, lưu dữ liệu và hướng dẫn cài đặt.
+  \item Không yêu cầu truy cập source công ty; toàn bộ dự án độc lập và chạy local được.
+\end{itemize}
+
+\section{Chức Năng Đã Làm}
+
+\subsection{Frontend}
+
+\begin{itemize}
+  \item Landing page giới thiệu sản phẩm, architecture graph, runtime flow graph, slot gắn video demo, audio guide và nhạc nền loop nhẹ.
+  \item Trang \texttt{/tour} để tạo và quản lý nhiều dự án tour.
+  \item Cho phép tạo mới, chỉnh sửa, xóa dự án đã tạo.
+  \item Upload ảnh từ máy, kéo thả ảnh, nhập URL ảnh online và thêm panorama mẫu.
+  \item Preview ảnh lớn trong lộ trình và trong màn chỉnh sửa lời dẫn.
+  \item Chọn LLM provider: Gemini, Groq, OpenAI, Claude hoặc mock AI.
+  \item Chọn model bằng dropdown, có nút tải danh sách model từ provider.
+  \item Hiển thị loading state khi nén ảnh, mô tả ảnh, sinh script và render audio.
+  \item Hiển thị lỗi khi backend/API fail.
+  \item Tour Player toàn màn hình với panorama viewer, thông tin nổi trên ảnh và audio thuyết minh.
+\end{itemize}
+
+\subsection{Backend/API}
+
+Backend được xây dựng bằng FastAPI, gồm các endpoint chính:
+
+\begin{longtable}{p{0.31\linewidth} p{0.58\linewidth}}
+\toprule
+\textbf{Endpoint} & \textbf{Chức năng} \\
+\midrule
+\texttt{GET /api/health} & Kiểm tra trạng thái backend và provider đang dùng. \\
+\texttt{POST /api/describe-image} & Nhận ảnh upload, validate và gọi LLM vision để mô tả ảnh. \\
+\texttt{POST /api/describe-image-url} & Tải ảnh từ URL công khai và mô tả bằng LLM. \\
+\texttt{POST /api/tour} & Ghép các mô tả điểm dừng thành kịch bản tour guide. \\
+\texttt{POST /api/tts/generate} & Render audio WAV bằng VieNeu-TTS và lưu lại trong artifacts. \\
+\texttt{POST /api/llm/models} & Trả danh sách model theo provider; fallback danh sách mặc định nếu thiếu key/API lỗi. \\
+\texttt{GET/PUT/DELETE /api/tour-projects} & Lưu, tải, xóa dự án tour bằng Supabase REST. \\
+\bottomrule
+\end{longtable}
+
+\subsection{AI/LLM}
+
+Hệ thống tích hợp các provider:
+
+\begin{itemize}
+  \item \textbf{Gemini}: gọi Google Generative Language API, hỗ trợ vision qua inline image data.
+  \item \textbf{Groq}: gọi OpenAI-compatible API, dùng model vision như Llama 4 Scout.
+  \item \textbf{OpenAI}: gọi Chat Completions API dạng OpenAI-compatible.
+  \item \textbf{Claude}: gọi Anthropic API.
+  \item \textbf{Mock AI}: fallback khi không có key để đảm bảo app vẫn chạy local.
+\end{itemize}
+
+\section{Cách Hoạt Động}
+
+\begin{enumerate}
+  \item Người dùng tạo một dự án tour và chọn ngành/tone thuyết minh.
+  \item Người dùng tải ảnh/panorama hoặc thêm URL ảnh online cho từng điểm dừng.
+  \item Frontend validate input, nén ảnh lớn trước khi gửi backend.
+  \item Backend nhận ảnh, gọi LLM vision để sinh tiêu đề, mô tả và highlights.
+  \item Backend tiếp tục gọi LLM để ghép các mô tả thành script tour guide gồm mở đầu, từng điểm dừng và kết thúc.
+  \item Người dùng xem preview ảnh lớn, chỉnh sửa script.
+  \item Backend render giọng nữ bằng VieNeu-TTS, lưu file WAV và trả URL audio.
+  \item Tour được lưu lại với manifest/audio URL, có thể mở lại mà không cần render lại audio.
+\end{enumerate}
+
+\section{Kiến Trúc Kỹ Thuật}
+
+\begin{itemize}
+  \item \textbf{Frontend}: Next.js App Router, React state, Tailwind CSS, Three.js/React Three Fiber cho panorama viewer.
+  \item \textbf{Backend}: FastAPI, Pydantic schema, REST endpoints.
+  \item \textbf{AI Layer}: adapter chung cho Gemini, Groq, OpenAI, Claude và mock.
+  \item \textbf{Text-to-Speech}: VieNeu-TTS, giọng nữ mặc định \texttt{Ngọc Lan}.
+  \item \textbf{Storage}: localStorage fallback; Supabase lưu project metadata; artifacts lưu audio WAV.
+  \item \textbf{Deployment readiness}: frontend sẵn sàng deploy Vercel, backend chạy local/ngrok hoặc container Python lâu dài.
+\end{itemize}
+
+\section{Đối Chiếu Với Yêu Cầu Đề Bài}
+
+\begin{longtable}{p{0.42\linewidth} p{0.47\linewidth}}
+\toprule
+\textbf{Yêu cầu} & \textbf{Kết quả thực hiện} \\
+\midrule
+Frontend nhập liệu và hiển thị kết quả & Có trang \texttt{/tour}, nhập project, ngành, API key, model, upload ảnh và xem kết quả. \\
+Backend/API xử lý request & Có FastAPI backend với endpoint mô tả ảnh, tạo tour, TTS, Supabase. \\
+Tích hợp LLM/API AI hoặc mock & Có Gemini, Groq, OpenAI, Claude và mock AI. \\
+Validate input rỗng & Có validate ảnh rỗng, URL rỗng, route rỗng, description rỗng ở backend cũ. \\
+Loading state & Có overlay loading theo từng bước xử lý. \\
+Lỗi khi API fail & UI hiển thị lỗi backend, LLM, TTS, Supabase. \\
+Code chạy local & Có README, env mẫu, Makefile, Docker backend. \\
+UI rõ ràng, dễ dùng & Có layout builder, preview ảnh lớn, editor script, player toàn màn hình. \\
+\bottomrule
+\end{longtable}
+
+\section{Cách Dùng AI Trong Quá Trình Làm Bài}
+
+\subsection{AI Tools Đã Dùng}
+
+\begin{itemize}
+  \item \textbf{Codex/ChatGPT}: hỗ trợ thiết kế kiến trúc, viết code, refactor frontend/backend, tạo README và report.
+  \item \textbf{LLM runtime trong sản phẩm}: Gemini/Groq/OpenAI/Claude hoặc mock để mô tả ảnh và sinh lời dẫn tour.
+  \item \textbf{VieNeu-TTS}: chuyển script tour guide thành giọng đọc nữ tiếng Việt.
+\end{itemize}
+
+\subsection{Dùng AI Để Làm Gì}
+
+\begin{itemize}
+  \item Phân tích yêu cầu đề bài thành các module kỹ thuật.
+  \item Thiết kế API backend và schema dữ liệu tour.
+  \item Viết prompt cho LLM mô tả ảnh/panorama theo ngữ cảnh ngành.
+  \item Sinh nội dung thuyết minh tự nhiên bằng tiếng Việt.
+  \item Gợi ý cải tiến UI/UX và checklist test.
+  \item Viết tài liệu cài đặt, cấu hình và báo cáo.
+\end{itemize}
+
+\subsection{Prompt Mẫu}
+
+\begin{lstlisting}[style=code]
+Hãy phân tích ảnh/panorama của một điểm dừng trong tour 3D.
+Trả về JSON tiếng Việt gồm:
+- title
+- description
+- highlights: 3-5 ý
+- digitization_tips: các điểm cần chú ý khi số hóa 3D
+Tone phù hợp ngành bất động sản/bán lẻ/triển lãm.
+\end{lstlisting}
+
+\begin{lstlisting}[style=code]
+Từ danh sách các điểm dừng đã có title, description và highlights,
+hãy viết lời dẫn hướng dẫn viên bằng tiếng Việt gồm:
+- intro
+- narration cho từng điểm
+- outro
+Giọng văn tự nhiên, dễ nghe khi chuyển thành TTS.
+\end{lstlisting}
+
+\subsection{Cách Kiểm Tra Lại Output Của AI}
+
+\begin{itemize}
+  \item Kiểm tra JSON parse được, đúng schema và không kèm markdown dư thừa.
+  \item Kiểm tra nội dung tiếng Việt có tự nhiên, không quá dài để TTS đọc.
+  \item Đối chiếu mô tả với ảnh preview để tránh hallucination rõ ràng.
+  \item Cho phép người dùng chỉnh sửa script trước khi render audio.
+  \item Viết test cho API mock, provider runtime, TTS response và Supabase fallback.
+\end{itemize}
+
+\section{Khó Khăn Gặp Phải}
+
+\begin{itemize}
+  \item \textbf{LLM vision không đồng nhất giữa provider}: Gemini, Groq, OpenAI và Claude có format request khác nhau; cần adapter riêng và fallback mock.
+  \item \textbf{Ảnh upload lớn}: ảnh panorama có thể vài chục MB, cần nén phía frontend trước khi gọi backend/LLM.
+  \item \textbf{Audio autoplay}: browser thường chặn autoplay có âm thanh, nên cần nút bật nhạc/hướng dẫn khi bị chặn.
+  \item \textbf{TTS và artifact}: file WAV cần được lưu lại để tour có thể mở lại mà không render lại.
+  \item \textbf{Deploy backend}: FastAPI + TTS không phù hợp Vercel serverless; backend nên chạy môi trường Python lâu dài hoặc local/ngrok khi demo.
+\end{itemize}
+
+\section{QA/UX: 3 Điểm Chưa Hợp Lý Và Cải Thiện}
+
+\begin{longtable}{p{0.25\linewidth} p{0.20\linewidth} p{0.42\linewidth}}
+\toprule
+\textbf{Vấn đề} & \textbf{Ảnh hưởng} & \textbf{Đề xuất cải thiện} \\
+\midrule
+API key nhập trực tiếp ở UI có thể gây lo ngại bảo mật nếu dùng chung máy. & Trung bình đến cao. Người dùng có thể sợ key bị lưu hoặc lộ. & Thêm giải thích rõ key không lưu database, chỉ gửi theo request. Với production nên dùng auth + backend proxy quản lý key theo workspace. \\
+\midrule
+Audio/TTS có thể mất thời gian khi tour có nhiều điểm dừng. & Trung bình. Người dùng phải chờ render từng đoạn WAV. & Render song song có giới hạn concurrency, hiển thị queue chi tiết, cho phép render lại từng segment lỗi thay vì toàn bộ tour. \\
+\midrule
+Supabase hiện lưu toàn bộ project payload JSONB, chưa có user authentication. & Trung bình. Phù hợp demo nhưng chưa đủ multi-user production. & Thêm Supabase Auth, user/workspace id, RLS policy theo user, tách bảng project/stops/audio nếu cần query/report nâng cao. \\
+\bottomrule
+\end{longtable}
+
+\section{Hướng Cải Thiện Nếu Có Thêm Thời Gian}
+
+\begin{itemize}
+  \item Thêm đăng nhập người dùng và phân quyền project theo workspace.
+  \item Lưu audio vào Supabase Storage hoặc S3 thay vì local artifacts.
+  \item Thêm chức năng hotspot giữa các panorama để di chuyển theo bản đồ.
+  \item Export tour thành bundle tĩnh để nhúng vào website khách hàng.
+  \item Thêm dashboard thống kê: số tour, số điểm dừng, trạng thái audio, provider đã dùng.
+  \item Thêm test end-to-end bằng Playwright cho flow upload, generate, edit, render audio.
+\end{itemize}
+
+\section{Hướng Dẫn Cài Đặt Và Chạy}
+
+Source code đi kèm README hướng dẫn cài đặt chi tiết. Các bước chính:
+
+\begin{lstlisting}[style=code]
+git clone https://github.com/hoaianthai345/3D_Building_Builder.git
+cd 3D_Building_Builder
+cp .env.example .env
+cp frontend/.env.local.example frontend/.env.local
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+\end{lstlisting}
+
+Terminal frontend:
+
+\begin{lstlisting}[style=code]
+cd frontend
+npm install
+npm run dev
+\end{lstlisting}
+
+Mở trình duyệt:
+
+\begin{itemize}
+  \item Landing page: \url{http://localhost:3000/}
+  \item Tour Builder: \url{http://localhost:3000/tour}
+\end{itemize}
+
+\section{Deliverables}
+
+\begin{itemize}
+  \item \textbf{Source code}: \url{https://github.com/hoaianthai345/3D_Building_Builder}
+  \item \textbf{README.md}: có hướng dẫn cài đặt local, cấu hình LLM, Supabase, TTS, Docker, test/build.
+  \item \textbf{Report}: file LaTeX này có thể compile thành PDF.
+  \item \textbf{Link deploy}: frontend sẵn sàng deploy Vercel; backend dùng URL cấu hình qua \texttt{NEXT\_PUBLIC\_API\_URL}.
+  \item \textbf{Video demo}: có thể quay 3--5 phút theo flow: landing page, tạo project, upload ảnh, chọn model, sinh script, chỉnh text, render audio và mở tour.
+\end{itemize}
+
+\section{Kết Luận}
+
+Bài làm đã triển khai một mini AI tool có tính ứng dụng thực tế cho nội dung 3D/không gian số hóa. Sản phẩm đáp ứng yêu cầu bắt buộc của đề bài: có frontend nhập liệu, backend API, tích hợp LLM/mock AI, validate, loading, error handling và chạy local được. Ngoài ra, sản phẩm mở rộng theo hướng tour guide hoàn chỉnh với panorama viewer, TTS tiếng Việt, lưu project bằng Supabase và đóng gói sẵn cho việc cài đặt/deploy.
+
+\end{document}

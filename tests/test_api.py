@@ -38,3 +38,28 @@ def test_generate_validation_error():
     # missing required project_name -> 422
     r = client.post("/api/generate", json={"space_type": "office"})
     assert r.status_code == 422
+
+
+def test_generate_rejects_blank_project_name():
+    r = client.post(
+        "/api/generate",
+        json={
+            "project_name": "   ",
+            "space_type": "office",
+            "description": "5 tầng, mỗi tầng 6 phòng",
+        },
+    )
+    assert r.status_code == 422
+
+
+def test_generate_rejects_blank_description():
+    r = client.post(
+        "/api/generate",
+        json={
+            "project_name": "Blank Description Tower",
+            "space_type": "office",
+            "description": "   ",
+        },
+    )
+    assert r.status_code == 400
+    assert r.json()["detail"] == "description is required"

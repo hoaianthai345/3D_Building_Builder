@@ -3,6 +3,6 @@ when LLM_PROVIDER=claude and ANTHROPIC_API_KEY is set. Use ``get_llm()``."""
 
 from .base import LLMClient, FallbackLLM
 from .mock import MockLLM
-from .factory import get_llm
+from .factory import get_llm, llm_from_runtime_key
 
-__all__ = ["LLMClient", "FallbackLLM", "MockLLM", "get_llm"]
+__all__ = ["LLMClient", "FallbackLLM", "MockLLM", "get_llm", "llm_from_runtime_key"]

@@ -121,6 +121,96 @@ export interface ArtifactIndex {
   scenes: string[];
 }
 
+// ---- Guided tour (AI vision describe + narrated walkthrough) -------------- //
+export type IndustryTone = "real_estate" | "retail" | "exhibition";
+
+export const INDUSTRY_LABELS: Record<IndustryTone, string> = {
+  real_estate: "Bất động sản",
+  retail: "Bán lẻ",
+  exhibition: "Triển lãm",
+};
+
+export interface StopDescribe {
+  title: string;
+  description: string;
+  highlights: string[];
+}
+
+export interface TourStop {
+  id: string;
+  image: string;
+  kind: string; // photo | panorama
+  describe: StopDescribe;
+  narration: string;
+}
+
+export interface Tour {
+  id: string;
+  project_name: string;
+  industry: IndustryTone;
+  intro: string;
+  stops: TourStop[];
+  outro: string;
+  created_at?: string;
+}
+
+export interface TourManifestStep {
+  id: string;
+  label: string;
+  source_stop_id?: string;
+  sequence: number;
+  image: string;
+  kind: string;
+  has_audio: boolean;
+}
+
+export interface TourManifest {
+  version: string;
+  project_name: string;
+  total_segments: number;
+  audio_segments: number;
+  final_segment_id: string;
+  steps: TourManifestStep[];
+  created_at: string;
+}
+
+// Client-side fallback (static mode, no backend): mirrors builder/llm/mock.py.
+export const VISION_TPL: Record<IndustryTone, StopDescribe> = {
+  real_estate: {
+    title: "Không gian sống đẳng cấp, sẵn sàng để cảm nhận",
+    description:
+      "Bước vào không gian này, khách hàng cảm nhận ngay sự thoáng đãng và chỉn chu trong từng đường nét. Ánh sáng tự nhiên cùng vật liệu hoàn thiện tạo cảm giác sang trọng mà vẫn ấm cúng, rất phù hợp cho nhu cầu an cư và đầu tư.",
+    highlights: [
+      "Bố cục mở tối ưu công năng và tầm nhìn",
+      "Ánh sáng tự nhiên dồi dào suốt cả ngày",
+      "Vật liệu hoàn thiện cao cấp, bền đẹp theo thời gian",
+      "Vị trí và tiện ích thuận tiện cho cuộc sống hiện đại",
+    ],
+  },
+  retail: {
+    title: "Mặt bằng bán lẻ thu hút, tối ưu trải nghiệm mua sắm",
+    description:
+      "Không gian được tổ chức để dẫn dắt dòng khách mượt mà, tối đa hóa khả năng trưng bày và tương tác với sản phẩm. Ánh sáng và bố cục làm nổi bật điểm nhấn thương hiệu, khuyến khích khách dừng lại lâu hơn.",
+    highlights: [
+      "Luồng di chuyển dẫn khách qua các điểm trưng bày chính",
+      "Khu vực điểm nhấn làm nổi bật sản phẩm chủ lực",
+      "Ánh sáng tôn lên màu sắc và chất liệu hàng hóa",
+      "Mặt tiền và lối vào thu hút khách qua đường",
+    ],
+  },
+  exhibition: {
+    title: "Không gian triển lãm dẫn dắt hành trình khám phá",
+    description:
+      "Không gian được thiết kế cho một hành trình tham quan có chủ đích: luồng di chuyển rõ ràng, ánh sáng định hướng sự chú ý vào hiện vật, và các điểm dừng tạo nhịp cảm xúc cho người xem.",
+    highlights: [
+      "Luồng tham quan mạch lạc, dẫn dắt theo câu chuyện",
+      "Ánh sáng trưng bày làm nổi bật hiện vật",
+      "Điểm dừng tạo nhịp và khoảng lặng cho trải nghiệm",
+      "Không gian linh hoạt cho nhiều loại nội dung trưng bày",
+    ],
+  },
+};
+
 export const SPACE_LABELS: Record<SpaceType, string> = {
   office: "Văn phòng",
   residential: "Tòa nhà ở",

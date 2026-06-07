@@ -8,16 +8,41 @@ __pycache__/
 /artifacts/
 bench/results.csv
 
+# raw media / local source assets. Optimized assets under frontend/public are committed.
+/images/
+/muisic/
+
 # secrets / env
 .env
+.env.*
+!.env.example
+!frontend/.env.local.example
 
 # local machine settings (permissions etc.)
 .claude/settings.local.json
+.codex/
+.agents/
+CODEX_TASK.md
+BUILD_LOG.md
+WORKFLOW.md
+DESIGN.md
+*.log
+reports/*.aux
+reports/*.log
+reports/*.out
+reports/*.toc
+reports/*.fls
+reports/*.fdb_latexmk
+
+# external reference repos cloned during local integration
+VieNeu-TTS/
+robust-virtual-tour-builder/
 
 # node / next (frontend)
 node_modules/
 frontend/.next/
 frontend/out/
+frontend/tsconfig.tsbuildinfo
 
 # os
 .DS_Store

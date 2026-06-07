@@ -1,0 +1,3 @@
+# Optional VieNeu-TTS integration for /api/tts.
+# Install only when you want backend-generated Vietnamese narration audio.
+vieneu

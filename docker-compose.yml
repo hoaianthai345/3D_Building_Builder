@@ -1,9 +1,5 @@
-# Safe handoff: `docker compose up --build` runs the backend with zero local
-# Python setup. Mock LLM by default (offline). To use Claude, put ANTHROPIC_API_KEY
-# in a .env file next to this compose file and set LLM_PROVIDER=claude.
-#
-# The frontend deploys to Vercel (reads static artifacts) and is not required here.
-# A `web` service can be added once the frontend exists, for fully-local demos.
+# `docker compose up --build` runs the FastAPI backend. The frontend is a
+# separate Next.js app in ./frontend and can run locally or deploy to Vercel.
 
 services:
   api:
@@ -12,8 +8,23 @@ services:
       - "8000:8000"
     environment:
       - LLM_PROVIDER=${LLM_PROVIDER:-mock}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3.5-flash}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GROQ_MODEL=${GROQ_MODEL:-meta-llama/llama-4-scout-17b-16e-instruct}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-sonnet-4-6}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - SUPABASE_TOUR_PROJECTS_TABLE=${SUPABASE_TOUR_PROJECTS_TABLE:-tour_projects}
+      - VIENEU_TTS_VOICE=${VIENEU_TTS_VOICE:-Ngọc Lan}
+      - VIENEU_TTS_MODE=${VIENEU_TTS_MODE:-}
+      - VIENEU_TTS_API_BASE=${VIENEU_TTS_API_BASE:-}
+      - VIENEU_TTS_MODEL=${VIENEU_TTS_MODEL:-}
+      - VIENEU_TTS_EMOTION=${VIENEU_TTS_EMOTION:-}
       - ARTIFACTS_DIR=/app/artifacts
       - FRONTEND_ORIGIN=${FRONTEND_ORIGIN:-*}
     volumes:

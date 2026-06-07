@@ -34,8 +34,8 @@ def _extract_json(text: str) -> Dict[str, Any]:
 class ClaudeLLM(LLMClient):
     name = "claude"
 
-    def __init__(self, model: str | None = None):
-        api_key = os.getenv("ANTHROPIC_API_KEY")
+    def __init__(self, model: str | None = None, api_key: str | None = None):
+        api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         if not api_key:
             raise RuntimeError("ANTHROPIC_API_KEY not set")
         from anthropic import Anthropic  # lazy import; optional dependency
@@ -51,4 +51,22 @@ class ClaudeLLM(LLMClient):
             messages=[{"role": "user", "content": prompt}],
         )
         text = "".join(block.text for block in resp.content if getattr(block, "type", None) == "text")
+        return _extract_json(text)
+
+    def complete_json_vision(self, *, purpose: str, context: dict, prompt: str,
+                             image_b64: str, media_type: str) -> dict:
+        resp = self.client.messages.create(
+            model=self.model,
+            max_tokens=1200,
+            system=_SYSTEM,
+            messages=[{
+                "role": "user",
+                "content": [
+                    {"type": "image", "source": {
+                        "type": "base64", "media_type": media_type, "data": image_b64}},
+                    {"type": "text", "text": prompt},
+                ],
+            }],
+        )
+        text = "".join(b.text for b in resp.content if getattr(b, "type", None) == "text")
         return _extract_json(text)

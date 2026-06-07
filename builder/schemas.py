@@ -48,6 +48,14 @@ class GenerateRequest(BaseModel):
     rooms_per_floor: Optional[int] = Field(None, ge=1, le=60)
     occupancy: Optional[int] = Field(None, ge=0, le=100_000)
 
+    @field_validator("project_name")
+    @classmethod
+    def _project_name_not_blank(cls, value: str) -> str:
+        cleaned = value.strip()
+        if not cleaned:
+            raise ValueError("project_name is required")
+        return cleaned
+
 
 # --------------------------------------------------------------------------- #
 # 2. Spec — normalized building parameters that drive the 3D builder          #
@@ -171,3 +179,48 @@ class ArtifactIndex(BaseModel):
 
     version: str = SCHEMA_VERSION
     scenes: List[str] = Field(default_factory=list, description="bundle ids / filenames")
+
+
+# --------------------------------------------------------------------------- #
+# 6. Guided tour — AI vision describe per stop + narrated walkthrough          #
+# --------------------------------------------------------------------------- #
+class IndustryTone(str, Enum):
+    """Tone of voice for the AI narration."""
+
+    real_estate = "real_estate"   # bất động sản
+    retail = "retail"             # bán lẻ
+    exhibition = "exhibition"     # triển lãm
+
+
+class StopDescribe(BaseModel):
+    """AI vision output for one uploaded view."""
+
+    title: str = Field(..., min_length=1, max_length=160)
+    description: str = Field(..., min_length=1, max_length=1200)
+    highlights: List[str] = Field(..., min_length=3, max_length=5)
+
+    @field_validator("highlights")
+    @classmethod
+    def _clean_highlights(cls, items: List[str]) -> List[str]:
+        cleaned = [s.strip() for s in items if s and s.strip()]
+        if len(cleaned) < 3:
+            raise ValueError("need at least 3 highlights")
+        return cleaned[:5]
+
+
+class TourStop(BaseModel):
+    id: str
+    image: str                    # URL / artifact path of the view
+    kind: str = "photo"           # photo | panorama
+    describe: StopDescribe
+    narration: str                # spoken text for this stop
+
+
+class Tour(BaseModel):
+    id: str
+    project_name: str
+    industry: IndustryTone = IndustryTone.real_estate
+    intro: str
+    stops: List[TourStop] = Field(default_factory=list)
+    outro: str
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())

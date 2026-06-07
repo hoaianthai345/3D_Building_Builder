@@ -119,6 +119,54 @@ _ROOM_POOL = {
 }
 
 
+# Industry-toned templates for the offline vision describer (mock can't see the
+# image, so it returns plausible industry-appropriate copy).
+_VISION_TPL = {
+    "real_estate": {
+        "title": "Không gian sống đẳng cấp, sẵn sàng để cảm nhận",
+        "description": (
+            "Bước vào không gian này, khách hàng cảm nhận ngay sự thoáng đãng và chỉn chu "
+            "trong từng đường nét. Ánh sáng tự nhiên cùng vật liệu hoàn thiện tạo nên cảm "
+            "giác sang trọng mà vẫn ấm cúng, rất phù hợp cho nhu cầu an cư và đầu tư."
+        ),
+        "highlights": [
+            "Bố cục mở tối ưu công năng và tầm nhìn",
+            "Ánh sáng tự nhiên dồi dào suốt cả ngày",
+            "Vật liệu hoàn thiện cao cấp, bền đẹp theo thời gian",
+            "Vị trí và tiện ích thuận tiện cho cuộc sống hiện đại",
+        ],
+    },
+    "retail": {
+        "title": "Mặt bằng bán lẻ thu hút, tối ưu trải nghiệm mua sắm",
+        "description": (
+            "Không gian được tổ chức để dẫn dắt dòng khách mượt mà, tối đa hóa khả năng "
+            "trưng bày và tương tác với sản phẩm. Ánh sáng và bố cục làm nổi bật điểm nhấn "
+            "thương hiệu, khuyến khích khách dừng lại lâu hơn và mua sắm nhiều hơn."
+        ),
+        "highlights": [
+            "Luồng di chuyển dẫn khách qua các điểm trưng bày chính",
+            "Khu vực điểm nhấn làm nổi bật sản phẩm chủ lực",
+            "Ánh sáng tôn lên màu sắc và chất liệu hàng hóa",
+            "Mặt tiền và lối vào thu hút khách qua đường",
+        ],
+    },
+    "exhibition": {
+        "title": "Không gian triển lãm dẫn dắt hành trình khám phá",
+        "description": (
+            "Không gian được thiết kế cho một hành trình tham quan có chủ đích: luồng di "
+            "chuyển rõ ràng, ánh sáng định hướng sự chú ý vào hiện vật, và các điểm dừng "
+            "tạo nhịp cảm xúc cho người xem từ lúc bước vào đến khi rời đi."
+        ),
+        "highlights": [
+            "Luồng tham quan mạch lạc, dẫn dắt theo câu chuyện",
+            "Ánh sáng trưng bày làm nổi bật hiện vật",
+            "Điểm dừng tạo nhịp và khoảng lặng cho trải nghiệm",
+            "Không gian linh hoạt cho nhiều loại nội dung trưng bày",
+        ],
+    },
+}
+
+
 def _first_int(pattern: str, text: str) -> int | None:
     m = re.search(pattern, text, flags=re.IGNORECASE)
     return int(m.group(1)) if m else None
@@ -134,7 +182,55 @@ class MockLLM(LLMClient):
             return self._describe(context)
         if purpose == "rooms":
             return self._rooms(context)
+        if purpose == "vision_describe":
+            return self._vision(context)
+        if purpose == "tour":
+            return self._tour(context)
         raise ValueError(f"unknown purpose: {purpose}")
+
+    # -- ordered stop descriptions -> guide narration ---------------------- #
+    def _tour(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+        project = str(ctx.get("project_name") or "không gian tham quan").strip()
+        industry = str(ctx.get("industry") or "real_estate")
+        stops = list(ctx.get("stops") or [])
+        n = max(len(stops), 1)
+
+        if industry == "retail":
+            intro = f"Chào mừng bạn đến với {project}. Tôi sẽ dẫn bạn qua {n} khu vực chính, tập trung vào luồng khách, điểm trưng bày và trải nghiệm mua sắm."
+            outro = f"Cảm ơn bạn đã tham quan {project}. Lộ trình này có thể dùng làm kịch bản giới thiệu mặt bằng, đào tạo nhân sự hoặc tư vấn khách thuê."
+        elif industry == "exhibition":
+            intro = f"Chào mừng bạn đến với {project}. Hành trình hôm nay gồm {n} điểm dừng, mỗi điểm mở ra một lớp nội dung và cảm xúc khác nhau."
+            outro = f"Cảm ơn bạn đã đồng hành trong hành trình tại {project}. Đây là tuyến tham quan có thể mở rộng thêm hiện vật, âm thanh và chỉ dẫn tương tác."
+        else:
+            intro = f"Xin chào và chào mừng quý khách đến với {project}. Tôi sẽ đóng vai hướng dẫn viên, đưa quý khách qua {n} không gian nổi bật của dự án."
+            outro = f"Cảm ơn quý khách đã tham quan {project}. Hy vọng phần thuyết minh đã giúp quý khách hình dung rõ hơn về công năng, cảm giác không gian và giá trị của dự án."
+
+        narrated = []
+        for i, stop in enumerate(stops, start=1):
+            desc = stop.get("describe") or {}
+            title = str(desc.get("title") or f"Điểm dừng {i}").strip()
+            description = str(desc.get("description") or "").strip()
+            highlights = [str(h).strip() for h in desc.get("highlights", []) if str(h).strip()]
+            hi = " ".join(f"Điểm đáng chú ý là {h.rstrip('.')}." for h in highlights[:2])
+            transition = "Tiếp theo, chúng ta sẽ di chuyển sang điểm kế tiếp để thấy rõ hơn sự liên kết trong toàn bộ lộ trình."
+            if i == len(stops):
+                transition = "Đây là điểm dừng cuối, nơi tổng hợp lại cảm nhận chính của toàn bộ hành trình."
+            narrated.append({
+                "id": str(stop.get("id") or f"s{i}"),
+                "narration": f"Điểm dừng {i}: {title}. {description} {hi} {transition}".strip(),
+            })
+
+        return {"intro": intro, "stops": narrated, "outro": outro}
+
+    # -- image (ignored by mock) + industry -> stop describe ---------------- #
+    def _vision(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+        industry = str(ctx.get("industry") or "real_estate")
+        tpl = _VISION_TPL.get(industry, _VISION_TPL["real_estate"])
+        return {
+            "title": tpl["title"],
+            "description": tpl["description"],
+            "highlights": list(tpl["highlights"]),
+        }
 
     # -- spec -> room program for a typical floor -------------------------- #
     def _rooms(self, ctx: Dict[str, Any]) -> Dict[str, Any]:

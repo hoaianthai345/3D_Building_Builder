@@ -17,8 +17,14 @@ class LLMClient(ABC):
 
     @abstractmethod
     def complete_json(self, *, purpose: str, context: Dict[str, Any], prompt: str) -> Dict[str, Any]:
-        """Return a JSON-like dict. ``purpose`` is "spec" or "describe"."""
+        """Return a JSON-like dict. ``purpose`` is "spec" / "describe" / "rooms"."""
         raise NotImplementedError
+
+    def complete_json_vision(self, *, purpose: str, context: Dict[str, Any], prompt: str,
+                             image_b64: str, media_type: str) -> Dict[str, Any]:
+        """Multimodal variant. Default ignores the image and falls back to text
+        (so a text-only provider still works via ``context``)."""
+        return self.complete_json(purpose=purpose, context=context, prompt=prompt)
 
 
 class FallbackLLM(LLMClient):
@@ -35,3 +41,13 @@ class FallbackLLM(LLMClient):
         except Exception as exc:  # noqa: BLE001 - intentional broad fallback
             print(f"[llm] primary '{self.primary.name}' failed ({exc}); falling back to '{self.fallback.name}'")
             return self.fallback.complete_json(purpose=purpose, context=context, prompt=prompt)
+
+    def complete_json_vision(self, *, purpose: str, context: Dict[str, Any], prompt: str,
+                             image_b64: str, media_type: str) -> Dict[str, Any]:
+        try:
+            return self.primary.complete_json_vision(
+                purpose=purpose, context=context, prompt=prompt, image_b64=image_b64, media_type=media_type)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[llm] primary vision '{self.primary.name}' failed ({exc}); falling back")
+            return self.fallback.complete_json_vision(
+                purpose=purpose, context=context, prompt=prompt, image_b64=image_b64, media_type=media_type)
