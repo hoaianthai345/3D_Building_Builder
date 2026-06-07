@@ -51,6 +51,13 @@ type LoadingState = {
   progress: number;
 };
 type ProjectStoreStatus = "checking" | "local" | "supabase" | "error";
+type MediaUploadResponse = {
+  configured: boolean;
+  url?: string;
+  storage?: string;
+  bucket?: string;
+  path?: string;
+};
 
 const PROJECT_STORAGE_KEY = "scene-describer-tour-projects-v1";
 const MAX_SOURCE_IMAGE_MB = 80;
@@ -163,6 +170,19 @@ async function compressImageFile(file: File): Promise<{ file: File; src: string 
   } finally {
     URL.revokeObjectURL(objectUrl);
   }
+}
+
+async function uploadImageToBackendStorage(file: File): Promise<string | null> {
+  if (STATIC_MODE) return null;
+  const fd = new FormData();
+  fd.append("file", file, file.name || "tour-image.jpg");
+  const res = await fetch(`${API_BASE}/api/tour-assets/image`, { method: "POST", body: fd });
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(typeof body?.detail === "string" ? body.detail : `Upload ảnh ${res.status}`);
+  }
+  const body = (await res.json()) as MediaUploadResponse;
+  return body.configured && body.url ? body.url : null;
 }
 
 function cleanStopsForStorage(stops: RawStop[]): RawStop[] {
@@ -550,12 +570,20 @@ export default function TourPage() {
           progress: Math.round((index / incoming.length) * 100),
         });
         const prepared = await compressImageFile(f);
+        setLoading({
+          title: "Đang lưu ảnh",
+          detail: `Đẩy ảnh ${index + 1}/${incoming.length} lên storage nếu backend đã cấu hình`,
+          progress: Math.round(((index + 0.5) / incoming.length) * 100),
+        });
+        const remoteUrl = await uploadImageToBackendStorage(prepared.file);
+        const imageSrc = remoteUrl || prepared.src;
         added.push({
           id: `s${Date.now()}-${added.length}`,
-          src: prepared.src,
-          file: prepared.file,
+          src: imageSrc,
+          file: remoteUrl ? undefined : prepared.file,
           kind: await detectKind(prepared.src),
           source: "file",
+          remoteUrl: remoteUrl || undefined,
         });
         setLoading({
           title: "Đang xử lý ảnh",
@@ -700,7 +728,9 @@ export default function TourPage() {
           throw new Error(typeof body?.detail === "string" ? body.detail : `TTS ${res.status}`);
         }
         const body = (await res.json()) as { audio_url: string };
-        audio[segment.id] = API_BASE ? `${API_BASE}${body.audio_url}` : body.audio_url;
+        audio[segment.id] = body.audio_url.startsWith("http")
+          ? body.audio_url
+          : API_BASE ? `${API_BASE}${body.audio_url}` : body.audio_url;
       } catch (e) {
         audioErrors[segment.id] = e instanceof Error ? e.message : String(e);
       }
@@ -1144,7 +1174,7 @@ export default function TourPage() {
             <p className="text-xs text-[var(--text-faint)]">
               {STATIC_MODE
                 ? "Chế độ tĩnh: mô tả mẫu theo ngành."
-                : `Chế độ live: backend ${API_BASE} mô tả ảnh, viết lời dẫn và lưu file WAV trong /artifacts/tts.`}
+                : `Chế độ live: backend ${API_BASE} mô tả ảnh, viết lời dẫn và lưu ảnh/audio lên Supabase Storage nếu đã cấu hình.`}
             </p>
           </div>
 

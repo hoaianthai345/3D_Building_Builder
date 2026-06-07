@@ -12,7 +12,7 @@ AI Tour Guide Generator là ứng dụng tạo tour tham quan 3D có thuyết mi
 - Preview ảnh lớn trong lộ trình và trong màn chỉnh script.
 - Tour Player toàn màn hình, hỗ trợ ảnh panorama 360, ảnh thường, audio thuyết minh và fallback Web Speech.
 - VieNeu-TTS tạo giọng nữ, lưu WAV để dùng lại.
-- Supabase lưu project tour lâu dài; nếu chưa cấu hình thì fallback localStorage.
+- Supabase lưu project tour, ảnh upload và audio đã render; nếu chưa cấu hình thì fallback localStorage/artifacts.
 
 ## Architecture
 
@@ -36,7 +36,8 @@ FastAPI backend
         +--> LLM providers: Gemini / Groq / OpenAI / Claude / Mock
         +--> VieNeu-TTS local or remote
         +--> Supabase REST for saved projects
-        +--> artifacts/tts for generated audio
+        +--> Supabase Storage for uploaded photos + generated audio
+        +--> artifacts/tts fallback for generated audio
 ```
 
 ## Yêu Cầu
@@ -45,7 +46,7 @@ FastAPI backend
 - Node.js 20+.
 - npm.
 - ffmpeg chỉ cần nếu muốn tự cắt/nén audio assets.
-- Supabase project nếu muốn lưu project tour qua database.
+- Supabase project nếu muốn lưu project tour, ảnh và audio qua cloud storage.
 
 ## Cài Đặt Local
 
@@ -126,9 +127,9 @@ uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 
 Các biến khác có trong [.env.example](./.env.example).
 
-## Supabase: Lưu Dự Án Tour
+## Supabase: Lưu Project, Ảnh Và Audio
 
-Tạo bảng bằng SQL trong Supabase SQL Editor:
+Tạo bảng và bucket bằng SQL trong Supabase SQL Editor:
 
 ```sql
 create table if not exists public.tour_projects (
@@ -141,6 +142,10 @@ create index if not exists tour_projects_updated_at_idx
   on public.tour_projects (updated_at desc);
 
 alter table public.tour_projects enable row level security;
+
+insert into storage.buckets (id, name, public)
+values ('tour-assets', 'tour-assets', true)
+on conflict (id) do update set public = excluded.public;
 ```
 
 File schema có sẵn tại [supabase/schema.sql](./supabase/schema.sql).
@@ -151,17 +156,19 @@ Cấu hình backend:
 export SUPABASE_URL=https://your-project.supabase.co
 export SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 export SUPABASE_TOUR_PROJECTS_TABLE=tour_projects
+export SUPABASE_STORAGE_BUCKET=tour-assets
 ```
 
 Lưu ý:
 
 - Dùng `service_role` key ở backend, không đưa key này vào frontend.
-- Backend gọi Supabase REST.
-- Nếu thiếu Supabase env, frontend tự fallback về localStorage.
+- Backend gọi Supabase REST để lưu project và Supabase Storage để lưu ảnh/audio.
+- Nếu thiếu Supabase env, frontend tự fallback về localStorage và backend trả audio local trong `/artifacts`.
+- Bucket `tour-assets` đang để public để trình phát tour, thẻ audio và LLM image-url endpoint dùng lại được URL đã lưu.
 
 ## VieNeu-TTS
 
-Backend có endpoint `POST /api/tts/generate` để tạo WAV và lưu vào `artifacts/tts`.
+Backend có endpoint `POST /api/tts/generate` để tạo WAV. Nếu `SUPABASE_STORAGE_BUCKET` đã cấu hình, audio được upload lên Supabase Storage; nếu chưa cấu hình thì fallback về `artifacts/tts`.
 
 Cài TTS local:
 

@@ -177,6 +177,52 @@ def test_api_tour_projects_upserts_to_supabase(monkeypatch):
     assert r.json() == {"configured": True, "project": project}
 
 
+def test_api_tour_asset_image_returns_unconfigured_without_storage(monkeypatch):
+    monkeypatch.setattr(backend_main, "SUPABASE_URL", "")
+    monkeypatch.setattr(backend_main, "SUPABASE_SERVICE_ROLE_KEY", "")
+
+    r = client.post(
+        "/api/tour-assets/image",
+        files={"file": ("view.png", b"\x89PNG\r\n\x1a\n", "image/png")},
+    )
+    assert r.status_code == 200, r.text
+    assert r.json()["configured"] is False
+
+
+def test_api_tour_asset_image_uploads_to_supabase_storage(monkeypatch):
+    class FakeResponse:
+        status_code = 200
+        text = "{}"
+
+    def fake_post(url, timeout, headers, data):
+        assert url.startswith("https://example.supabase.co/storage/v1/object/tour-assets/photos/")
+        assert url.endswith(".png")
+        assert timeout == 35
+        assert headers["apikey"] == "service-key"
+        assert headers["authorization"] == "Bearer service-key"
+        assert headers["content-type"] == "image/png"
+        assert headers["x-upsert"] == "true"
+        assert data == b"\x89PNG\r\n\x1a\n"
+        return FakeResponse()
+
+    monkeypatch.setattr(backend_main, "SUPABASE_URL", "https://example.supabase.co")
+    monkeypatch.setattr(backend_main, "SUPABASE_SERVICE_ROLE_KEY", "service-key")
+    monkeypatch.setattr(backend_main, "SUPABASE_STORAGE_BUCKET", "tour-assets")
+    monkeypatch.setattr(backend_main.requests, "post", fake_post)
+
+    r = client.post(
+        "/api/tour-assets/image",
+        files={"file": ("view.png", b"\x89PNG\r\n\x1a\n", "image/png")},
+    )
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["configured"] is True
+    assert body["storage"] == "supabase"
+    assert body["bucket"] == "tour-assets"
+    assert body["url"].startswith("https://example.supabase.co/storage/v1/object/public/tour-assets/photos/")
+    assert body["url"].endswith(".png")
+
+
 def test_runtime_google_provider_can_be_created_from_user_key():
     llm = llm_from_runtime_key("gemini", "test-key", "gemini-3.5-flash")
     assert llm.name == "gemini"
@@ -206,8 +252,11 @@ def test_api_tts_generate_returns_persisted_audio_url(monkeypatch, tmp_path):
         return wav
 
     monkeypatch.setattr(backend_main, "synthesize", fake_synthesize)
+    monkeypatch.setattr(backend_main, "SUPABASE_URL", "")
+    monkeypatch.setattr(backend_main, "SUPABASE_SERVICE_ROLE_KEY", "")
     r = client.post("/api/tts/generate", json={"text": "Xin chào tour tham quan", "voice": ""})
     assert r.status_code == 200
     body = r.json()
     assert body["audio_url"].endswith("/voice.wav")
     assert body["filename"] == "voice.wav"
+    assert body["storage"] == "local"

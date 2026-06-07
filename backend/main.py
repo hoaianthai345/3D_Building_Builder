@@ -18,6 +18,8 @@ import json
 import os
 from datetime import datetime, timezone
 from typing import Any, List
+from urllib.parse import quote
+from uuid import uuid4
 
 import requests
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -69,6 +71,7 @@ FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "*")
 SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
 SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
 SUPABASE_TOUR_PROJECTS_TABLE = os.getenv("SUPABASE_TOUR_PROJECTS_TABLE", "tour_projects")
+SUPABASE_STORAGE_BUCKET = os.getenv("SUPABASE_STORAGE_BUCKET", "tour-assets")
 
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 
@@ -196,6 +199,17 @@ class TTSRequest(BaseModel):
 class TTSGenerateResponse(BaseModel):
     audio_url: str
     filename: str
+    storage: str = "local"
+    bucket: str = ""
+    path: str = ""
+
+
+class MediaUploadResponse(BaseModel):
+    configured: bool
+    url: str = ""
+    storage: str = "local"
+    bucket: str = ""
+    path: str = ""
 
 
 def _artifact_url(path: os.PathLike[str] | str) -> str:
@@ -214,6 +228,52 @@ def _runtime_llm(provider: str, api_key: str, model: str) -> LLMClient | None:
 
 def _supabase_configured() -> bool:
     return bool(SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY)
+
+
+def _supabase_storage_configured() -> bool:
+    return bool(_supabase_configured() and SUPABASE_STORAGE_BUCKET.strip())
+
+
+def _storage_object_path(path: str) -> str:
+    clean = [quote(part.strip("/"), safe="") for part in path.split("/") if part.strip("/")]
+    return "/".join(clean)
+
+
+def _supabase_public_url(path: str) -> str:
+    bucket = quote(SUPABASE_STORAGE_BUCKET.strip(), safe="")
+    return f"{SUPABASE_URL}/storage/v1/object/public/{bucket}/{_storage_object_path(path)}"
+
+
+def _upload_supabase_storage(raw: bytes, path: str, content_type: str) -> MediaUploadResponse:
+    if not _supabase_storage_configured():
+        return MediaUploadResponse(configured=False)
+
+    object_path = _storage_object_path(path)
+    bucket = quote(SUPABASE_STORAGE_BUCKET.strip(), safe="")
+    try:
+        res = requests.post(
+            f"{SUPABASE_URL}/storage/v1/object/{bucket}/{object_path}",
+            timeout=35,
+            headers={
+                "apikey": SUPABASE_SERVICE_ROLE_KEY,
+                "authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
+                "content-type": content_type,
+                "cache-control": "3600",
+                "x-upsert": "true",
+            },
+            data=raw,
+        )
+    except requests.RequestException as exc:
+        raise RuntimeError(f"supabase storage request failed: {exc}") from exc
+    if res.status_code >= 400:
+        raise RuntimeError(f"supabase storage returned {res.status_code}: {res.text[:240]}")
+    return MediaUploadResponse(
+        configured=True,
+        url=_supabase_public_url(object_path),
+        storage="supabase",
+        bucket=SUPABASE_STORAGE_BUCKET.strip(),
+        path=object_path,
+    )
 
 
 def _supabase_headers(prefer: str = "") -> dict[str, str]:
@@ -301,6 +361,31 @@ def api_delete_tour_project(project_id: str) -> dict[str, bool]:
     if res.status_code >= 400:
         raise HTTPException(status_code=502, detail=f"supabase returned {res.status_code}: {res.text[:240]}")
     return {"ok": True}
+
+
+@app.post("/api/tour-assets/image", response_model=MediaUploadResponse)
+async def api_upload_tour_image(file: UploadFile = File(...)) -> MediaUploadResponse:
+    raw = await file.read()
+    if not raw:
+        raise HTTPException(status_code=400, detail="image file is empty")
+    media = file.content_type or "image/jpeg"
+    if not media.startswith("image/"):
+        raise HTTPException(status_code=400, detail="uploaded file must be an image")
+    if len(raw) > 8 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="image is larger than 8 MB")
+    if not _supabase_storage_configured():
+        return MediaUploadResponse(configured=False)
+
+    subtype = media.split("/", 1)[1].split(";", 1)[0].lower()
+    ext = {"jpeg": "jpg", "pjpeg": "jpg", "svg+xml": "svg"}.get(subtype, subtype or "jpg")
+    if ext not in {"jpg", "jpeg", "png", "webp", "gif", "avif", "svg"}:
+        ext = "jpg"
+    date_path = datetime.now(timezone.utc).strftime("%Y/%m/%d")
+    path = f"photos/{date_path}/{uuid4().hex}.{ext}"
+    try:
+        return _upload_supabase_storage(raw, path, media)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
 def _normalize_provider(provider: str) -> str:
@@ -484,4 +569,17 @@ def api_tts_generate(req: TTSRequest) -> TTSGenerateResponse:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except TTSUnavailable as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
+    if _supabase_storage_configured():
+        try:
+            uploaded = _upload_supabase_storage(wav.read_bytes(), f"tts/{wav.name}", "audio/wav")
+            if uploaded.url:
+                return TTSGenerateResponse(
+                    audio_url=uploaded.url,
+                    filename=wav.name,
+                    storage=uploaded.storage,
+                    bucket=uploaded.bucket,
+                    path=uploaded.path,
+                )
+        except RuntimeError:
+            pass
     return TTSGenerateResponse(audio_url=_artifact_url(wav), filename=wav.name)

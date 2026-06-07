@@ -37,7 +37,7 @@ const FLOW = [
   {
     icon: SpeakerHighIcon,
     title: "Render giọng nữ và phát tour",
-    body: "VieNeu-TTS tạo WAV, lưu lại cùng manifest để mở lại tour không phải render audio từ đầu.",
+    body: "VieNeu-TTS tạo WAV, lưu lên Supabase Storage nếu đã cấu hình, rồi ghi lại cùng manifest để mở lại tour không phải render audio từ đầu.",
   },
 ];
 
@@ -48,7 +48,7 @@ const ARCHITECTURE = [
   },
   {
     title: "Backend/API",
-    body: "FastAPI nhận upload, tải ảnh URL, gọi LLM runtime, tạo script tour và phục vụ artifact audio.",
+    body: "FastAPI nhận upload, đẩy media lên Storage, tải ảnh URL, gọi LLM runtime, tạo script tour và render audio.",
   },
   {
     title: "AI Layer",
@@ -56,14 +56,15 @@ const ARCHITECTURE = [
   },
   {
     title: "Audio & Storage",
-    body: "VieNeu-TTS sinh giọng nữ, WAV được cache trong artifacts/tts, project tour lưu ở localStorage.",
+    body: "VieNeu-TTS sinh giọng nữ, ảnh/audio lưu Supabase Storage khi có cấu hình; project tour lưu Supabase hoặc localStorage fallback.",
   },
 ];
 
 const SYSTEM_GRAPH = [
   { label: "Landing page", detail: "Giới thiệu, audio guide, video demo slot" },
   { label: "Tour Builder", detail: "Project CRUD, upload ảnh, chọn provider/model" },
-  { label: "FastAPI", detail: "Validate request, nén/lưu artifacts, điều phối LLM/TTS" },
+  { label: "FastAPI", detail: "Validate request, upload media, điều phối LLM/TTS" },
+  { label: "Supabase", detail: "Postgres lưu project, Storage lưu ảnh và WAV" },
   { label: "AI Providers", detail: "Gemini, Groq, OpenAI, Claude hoặc mock AI" },
   { label: "VieNeu-TTS", detail: "Sinh WAV giọng nữ và cache theo script" },
   { label: "Tour Player", detail: "Panorama toàn màn hình, info overlay, audio segment" },
