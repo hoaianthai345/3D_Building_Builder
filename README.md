@@ -144,7 +144,7 @@ create index if not exists tour_projects_updated_at_idx
 alter table public.tour_projects enable row level security;
 
 insert into storage.buckets (id, name, public)
-values ('tour-assets', 'tour-assets', true)
+values ('3D', '3D', true)
 on conflict (id) do update set public = excluded.public;
 ```
 
@@ -156,7 +156,7 @@ Cấu hình backend:
 export SUPABASE_URL=https://your-project.supabase.co
 export SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 export SUPABASE_TOUR_PROJECTS_TABLE=tour_projects
-export SUPABASE_STORAGE_BUCKET=tour-assets
+export SUPABASE_STORAGE_BUCKET=3D
 ```
 
 Lưu ý:
@@ -164,7 +164,7 @@ Lưu ý:
 - Dùng `service_role` key ở backend, không đưa key này vào frontend.
 - Backend gọi Supabase REST để lưu project và Supabase Storage để lưu ảnh/audio.
 - Nếu thiếu Supabase env, frontend tự fallback về localStorage và backend trả audio local trong `/artifacts`.
-- Bucket `tour-assets` đang để public để trình phát tour, thẻ audio và LLM image-url endpoint dùng lại được URL đã lưu.
+- Bucket `3D` đang để public để trình phát tour, thẻ audio và LLM image-url endpoint dùng lại được URL đã lưu.
 
 ## VieNeu-TTS
 

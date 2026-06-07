@@ -28,6 +28,11 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional local convenience
+    load_dotenv = None
+
 from builder.llm import get_llm, llm_from_runtime_key
 from builder.llm.base import LLMClient
 from builder.pipeline import generate
@@ -37,6 +42,9 @@ from builder.schemas import (
 from builder.tour import generate_tour
 from builder.tts import TTSUnavailable, synthesize
 from builder.vision_describer import describe_image
+
+if load_dotenv:
+    load_dotenv()
 
 LLM_MODEL_DEFAULTS: dict[str, list[str]] = {
     "gemini": [
@@ -71,7 +79,7 @@ FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "*")
 SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
 SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
 SUPABASE_TOUR_PROJECTS_TABLE = os.getenv("SUPABASE_TOUR_PROJECTS_TABLE", "tour_projects")
-SUPABASE_STORAGE_BUCKET = os.getenv("SUPABASE_STORAGE_BUCKET", "tour-assets")
+SUPABASE_STORAGE_BUCKET = os.getenv("SUPABASE_STORAGE_BUCKET", "3D")
 
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 

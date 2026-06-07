@@ -13,7 +13,7 @@ alter table public.tour_projects enable row level security;
 -- Keep browser clients away from this table unless you later add auth-aware policies.
 
 insert into storage.buckets (id, name, public)
-values ('tour-assets', 'tour-assets', true)
+values ('3D', '3D', true)
 on conflict (id) do update set public = excluded.public;
 
 -- Generated media is uploaded by the backend with SUPABASE_SERVICE_ROLE_KEY.
