@@ -168,6 +168,15 @@ Lưu ý:
 - Nếu thiếu Supabase env, frontend tự fallback về localStorage và backend trả audio local trong `/artifacts`.
 - Bucket `3D` đang để public để trình phát tour, thẻ audio và LLM image-url endpoint dùng lại được URL đã lưu.
 
+Seed tour xem nhà mẫu đã có audio lên Supabase:
+
+```bash
+source .venv/bin/activate
+python scripts/seed_demo_supabase.py
+```
+
+Script đọc `.env`, upload audio demo vào bucket `3D` và upsert project `demo-home-tour-lake-view` vào bảng `tour_projects`.
+
 ## VieNeu-TTS
 
 Backend có endpoint `POST /api/tts/generate` để tạo WAV. Nếu `SUPABASE_STORAGE_BUCKET` đã cấu hình, audio được upload lên Supabase Storage; nếu chưa cấu hình thì fallback về `artifacts/tts`.

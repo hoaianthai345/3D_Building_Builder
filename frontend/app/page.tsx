@@ -260,9 +260,17 @@ export default function Home() {
               Khung gắn video demo và giọng đọc giới thiệu.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--text-muted)]">
-              Gắn file video walkthrough vào div bên cạnh khi có bản quay màn hình. Audio dưới đây là lời dẫn giới thiệu website và flow sử dụng AI tour.
+              Video walkthrough minh họa flow tạo tour, upload ảnh, sinh lời dẫn, render audio và mở tour toàn màn hình. Audio dưới đây là lời dẫn giới thiệu website.
             </p>
             <LandingAudioGuide src={LANDING_AUDIO_URL} />
+            <a
+              href="https://youtu.be/jDPyOOI60EU"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex h-11 items-center justify-center rounded-[10px] border border-[var(--border-strong)] px-5 text-sm font-medium text-[var(--text)] transition hover:bg-[var(--bg-subtle)]"
+            >
+              Mở video demo trên YouTube
+            </a>
           </Reveal>
 
           <Reveal delay={0.08}>
