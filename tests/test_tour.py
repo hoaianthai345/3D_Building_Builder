@@ -177,6 +177,19 @@ def test_api_tour_projects_upserts_to_supabase(monkeypatch):
     assert r.json() == {"configured": True, "project": project}
 
 
+def test_api_tour_projects_allows_vercel_preflight_for_put():
+    r = client.options(
+        "/api/tour-projects/tour-1",
+        headers={
+            "origin": "https://3-d-building-builder.vercel.app",
+            "access-control-request-method": "PUT",
+            "access-control-request-headers": "content-type",
+        },
+    )
+    assert r.status_code == 200, r.text
+    assert r.headers["access-control-allow-origin"] == "https://3-d-building-builder.vercel.app"
+
+
 def test_api_tour_asset_image_returns_unconfigured_without_storage(monkeypatch):
     monkeypatch.setattr(backend_main, "SUPABASE_URL", "")
     monkeypatch.setattr(backend_main, "SUPABASE_SERVICE_ROLE_KEY", "")

@@ -75,7 +75,7 @@ LLM_MODEL_DEFAULTS: dict[str, list[str]] = {
 }
 
 ARTIFACTS_DIR = os.getenv("ARTIFACTS_DIR", "artifacts")
-FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "*")
+FRONTEND_ORIGINS_RAW = os.getenv("FRONTEND_ORIGINS", os.getenv("FRONTEND_ORIGIN", "*"))
 SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
 SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
 SUPABASE_TOUR_PROJECTS_TABLE = os.getenv("SUPABASE_TOUR_PROJECTS_TABLE", "tour_projects")
@@ -83,10 +83,26 @@ SUPABASE_STORAGE_BUCKET = os.getenv("SUPABASE_STORAGE_BUCKET", "3D")
 
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 
+
+def _cors_origins(raw: str) -> list[str]:
+    origins = [origin.strip() for origin in raw.split(",") if origin.strip()]
+    if not origins or "*" in origins:
+        return ["*"]
+    return origins
+
+
+cors_origins = _cors_origins(FRONTEND_ORIGINS_RAW)
+cors_origin_regex = (
+    None
+    if "*" in cors_origins
+    else r"https://.*\.vercel\.app|https://.*\.ngrok-free\.app|http://localhost:\d+|http://127\.0\.0\.1:\d+"
+)
+
 app = FastAPI(title="AI 3D Scene Describer", version="1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_ORIGIN] if FRONTEND_ORIGIN != "*" else ["*"],
+    allow_origins=cors_origins,
+    allow_origin_regex=cors_origin_regex,
     allow_methods=["*"],
     allow_headers=["*"],
 )
