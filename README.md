@@ -2,6 +2,8 @@
 
 AI Tour Guide Generator là ứng dụng tạo tour tham quan 3D có thuyết minh AI. Người dùng tạo dự án tour, tải ảnh hoặc panorama, chọn LLM provider, sinh mô tả từng điểm dừng, chỉnh sửa script hướng dẫn viên, render giọng đọc nữ và mở tour toàn màn hình với thẻ thông tin nổi trên ảnh.
 
+Link deploy frontend: https://3-d-building-builder.vercel.app/
+
 ## Tính Năng
 
 - Landing page giới thiệu sản phẩm, architecture graph, flow graph, slot video demo, audio guide và nhạc nền loop nhẹ.

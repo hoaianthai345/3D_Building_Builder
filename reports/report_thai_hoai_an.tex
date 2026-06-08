@@ -68,7 +68,7 @@
     \textbf{Vai trò ứng tuyển:} & Thực tập sinh công nghệ \\
     \textbf{Hướng thực hiện:} & AI 3D Scene Describer mở rộng thành AI Tour Guide \\
     \textbf{Source code:} & \url{https://github.com/hoaianthai345/3D_Building_Builder} \\
-    \textbf{Link deploy:} & Vercel frontend, backend cấu hình theo \texttt{NEXT\_PUBLIC\_API\_URL} \\
+    \textbf{Link deploy:} & \url{https://3-d-building-builder.vercel.app/} \\
   \end{tabular}
   \vfill
   {\large \today\par}
@@ -81,7 +81,7 @@
 
 Sản phẩm được xây dựng là \textbf{AI Tour Guide Generator}, một web app hỗ trợ tạo tour tham quan 3D có lời dẫn AI từ ảnh thường hoặc ảnh panorama. Công cụ tập trung vào bài toán quản lý và tổ chức nội dung không gian số hóa: người dùng tạo dự án tour, thêm các điểm dừng, để LLM phân tích hình ảnh, sinh mô tả từng view, tạo kịch bản hướng dẫn viên, chỉnh sửa nội dung và render giọng đọc nữ để phát lại trong trình xem tour toàn màn hình.
 
-So với yêu cầu tối thiểu của đề bài, sản phẩm vẫn đáp ứng hướng \textbf{Option A -- AI 3D Scene Describer}: mỗi ảnh/view được AI sinh tiêu đề, mô tả, 3--5 điểm nổi bật và nội dung thuyết minh phù hợp ngành. Phần mở rộng của sản phẩm là ghép các mô tả này thành một tour guide có audio và manifest để dùng lại.
+So với yêu cầu tối thiểu của đề bài, sản phẩm vẫn đáp ứng hướng \textbf{Option A -- AI 3D Scene Describer}: mỗi ảnh/view được AI sinh tiêu đề, mô tả, 3--5 điểm nổi bật và nội dung thuyết minh phù hợp ngành. Phần mở rộng của sản phẩm là ghép các mô tả này thành một tour guide có audio, manifest, Supabase persistence và trình phát tour toàn màn hình để dùng lại.
 
 \section{Mục Tiêu Bài Làm}
 
@@ -102,6 +102,7 @@ So với yêu cầu tối thiểu của đề bài, sản phẩm vẫn đáp ứ
   \item Cho phép tạo mới, chỉnh sửa, xóa dự án đã tạo.
   \item Upload ảnh từ máy, kéo thả ảnh, nhập URL ảnh online và thêm panorama mẫu.
   \item Preview ảnh lớn trong lộ trình và trong màn chỉnh sửa lời dẫn.
+  \item Tự copy các dự án đang có trong localStorage lên Supabase khi backend đã cấu hình.
   \item Chọn LLM provider: Gemini, Groq, OpenAI, Claude hoặc mock AI.
   \item Chọn model bằng dropdown, có nút tải danh sách model từ provider.
   \item Hiển thị loading state khi nén ảnh, mô tả ảnh, sinh script và render audio.
@@ -121,7 +122,8 @@ Backend được xây dựng bằng FastAPI, gồm các endpoint chính:
 \texttt{POST /api/describe-image} & Nhận ảnh upload, validate và gọi LLM vision để mô tả ảnh. \\
 \texttt{POST /api/describe-image-url} & Tải ảnh từ URL công khai và mô tả bằng LLM. \\
 \texttt{POST /api/tour} & Ghép các mô tả điểm dừng thành kịch bản tour guide. \\
-\texttt{POST /api/tts/generate} & Render audio WAV bằng VieNeu-TTS và lưu lại trong artifacts. \\
+\texttt{POST /api/tts/generate} & Render audio WAV bằng VieNeu-TTS, upload Supabase Storage nếu cấu hình, fallback artifacts local. \\
+\texttt{POST /api/tour-assets/image} & Nhận ảnh đã nén từ frontend và upload lên Supabase Storage bucket \texttt{3D}. \\
 \texttt{POST /api/llm/models} & Trả danh sách model theo provider; fallback danh sách mặc định nếu thiếu key/API lỗi. \\
 \texttt{GET/PUT/DELETE /api/tour-projects} & Lưu, tải, xóa dự án tour bằng Supabase REST. \\
 \bottomrule
@@ -144,11 +146,11 @@ Hệ thống tích hợp các provider:
 \begin{enumerate}
   \item Người dùng tạo một dự án tour và chọn ngành/tone thuyết minh.
   \item Người dùng tải ảnh/panorama hoặc thêm URL ảnh online cho từng điểm dừng.
-  \item Frontend validate input, nén ảnh lớn trước khi gửi backend.
+  \item Frontend validate input, nén ảnh lớn trước khi gửi backend và upload ảnh lên Supabase Storage nếu backend đã cấu hình.
   \item Backend nhận ảnh, gọi LLM vision để sinh tiêu đề, mô tả và highlights.
   \item Backend tiếp tục gọi LLM để ghép các mô tả thành script tour guide gồm mở đầu, từng điểm dừng và kết thúc.
   \item Người dùng xem preview ảnh lớn, chỉnh sửa script.
-  \item Backend render giọng nữ bằng VieNeu-TTS, lưu file WAV và trả URL audio.
+  \item Backend render giọng nữ bằng VieNeu-TTS, lưu file WAV lên Supabase Storage hoặc fallback artifacts, rồi trả URL audio.
   \item Tour được lưu lại với manifest/audio URL, có thể mở lại mà không cần render lại audio.
 \end{enumerate}
 
@@ -159,8 +161,8 @@ Hệ thống tích hợp các provider:
   \item \textbf{Backend}: FastAPI, Pydantic schema, REST endpoints.
   \item \textbf{AI Layer}: adapter chung cho Gemini, Groq, OpenAI, Claude và mock.
   \item \textbf{Text-to-Speech}: VieNeu-TTS, giọng nữ mặc định \texttt{Ngọc Lan}.
-  \item \textbf{Storage}: localStorage fallback; Supabase lưu project metadata; artifacts lưu audio WAV.
-  \item \textbf{Deployment readiness}: frontend sẵn sàng deploy Vercel, backend chạy local/ngrok hoặc container Python lâu dài.
+  \item \textbf{Storage}: localStorage fallback; Supabase Postgres lưu project payload; Supabase Storage bucket \texttt{3D} lưu ảnh upload và audio WAV; artifacts local là fallback khi thiếu cấu hình.
+  \item \textbf{Deployment}: frontend deploy tại \url{https://3-d-building-builder.vercel.app/}; backend chạy local/ngrok hoặc container Python lâu dài qua \texttt{NEXT\_PUBLIC\_API\_URL}.
 \end{itemize}
 
 \section{Đối Chiếu Với Yêu Cầu Đề Bài}
@@ -170,7 +172,7 @@ Hệ thống tích hợp các provider:
 \textbf{Yêu cầu} & \textbf{Kết quả thực hiện} \\
 \midrule
 Frontend nhập liệu và hiển thị kết quả & Có trang \texttt{/tour}, nhập project, ngành, API key, model, upload ảnh và xem kết quả. \\
-Backend/API xử lý request & Có FastAPI backend với endpoint mô tả ảnh, tạo tour, TTS, Supabase. \\
+Backend/API xử lý request & Có FastAPI backend với endpoint mô tả ảnh, tạo tour, TTS, upload media và Supabase. \\
 Tích hợp LLM/API AI hoặc mock & Có Gemini, Groq, OpenAI, Claude và mock AI. \\
 Validate input rỗng & Có validate ảnh rỗng, URL rỗng, route rỗng, description rỗng ở backend cũ. \\
 Loading state & Có overlay loading theo từng bước xử lý. \\
@@ -229,7 +231,7 @@ Giọng văn tự nhiên, dễ nghe khi chuyển thành TTS.
   \item Kiểm tra nội dung tiếng Việt có tự nhiên, không quá dài để TTS đọc.
   \item Đối chiếu mô tả với ảnh preview để tránh hallucination rõ ràng.
   \item Cho phép người dùng chỉnh sửa script trước khi render audio.
-  \item Viết test cho API mock, provider runtime, TTS response và Supabase fallback.
+  \item Viết test cho API mock, provider runtime, TTS response, Supabase fallback và Supabase Storage upload.
 \end{itemize}
 
 \section{Khó Khăn Gặp Phải}
@@ -238,7 +240,7 @@ Giọng văn tự nhiên, dễ nghe khi chuyển thành TTS.
   \item \textbf{LLM vision không đồng nhất giữa provider}: Gemini, Groq, OpenAI và Claude có format request khác nhau; cần adapter riêng và fallback mock.
   \item \textbf{Ảnh upload lớn}: ảnh panorama có thể vài chục MB, cần nén phía frontend trước khi gọi backend/LLM.
   \item \textbf{Audio autoplay}: browser thường chặn autoplay có âm thanh, nên cần nút bật nhạc/hướng dẫn khi bị chặn.
-  \item \textbf{TTS và artifact}: file WAV cần được lưu lại để tour có thể mở lại mà không render lại.
+  \item \textbf{TTS và storage}: file WAV cần được lưu lại để tour có thể mở lại mà không render lại; bản hiện tại đã upload được lên Supabase Storage khi có key backend.
   \item \textbf{Deploy backend}: FastAPI + TTS không phù hợp Vercel serverless; backend nên chạy môi trường Python lâu dài hoặc local/ngrok khi demo.
 \end{itemize}
 
@@ -252,7 +254,7 @@ API key nhập trực tiếp ở UI có thể gây lo ngại bảo mật nếu d
 \midrule
 Audio/TTS có thể mất thời gian khi tour có nhiều điểm dừng. & Trung bình. Người dùng phải chờ render từng đoạn WAV. & Render song song có giới hạn concurrency, hiển thị queue chi tiết, cho phép render lại từng segment lỗi thay vì toàn bộ tour. \\
 \midrule
-Supabase hiện lưu toàn bộ project payload JSONB, chưa có user authentication. & Trung bình. Phù hợp demo nhưng chưa đủ multi-user production. & Thêm Supabase Auth, user/workspace id, RLS policy theo user, tách bảng project/stops/audio nếu cần query/report nâng cao. \\
+Supabase hiện lưu toàn bộ project payload JSONB, ảnh/audio ở bucket public và chưa có user authentication. & Trung bình. Phù hợp demo nhưng chưa đủ multi-user production. & Thêm Supabase Auth, user/workspace id, RLS policy theo user, signed URL cho media private và tách bảng project/stops/audio nếu cần query/report nâng cao. \\
 \bottomrule
 \end{longtable}
 
@@ -260,7 +262,7 @@ Supabase hiện lưu toàn bộ project payload JSONB, chưa có user authentica
 
 \begin{itemize}
   \item Thêm đăng nhập người dùng và phân quyền project theo workspace.
-  \item Lưu audio vào Supabase Storage hoặc S3 thay vì local artifacts.
+  \item Thêm signed URL hoặc private bucket cho ảnh/audio khi triển khai production.
   \item Thêm chức năng hotspot giữa các panorama để di chuyển theo bản đồ.
   \item Export tour thành bundle tĩnh để nhúng vào website khách hàng.
   \item Thêm dashboard thống kê: số tour, số điểm dừng, trạng thái audio, provider đã dùng.
@@ -296,6 +298,7 @@ Mở trình duyệt:
 \begin{itemize}
   \item Landing page: \url{http://localhost:3000/}
   \item Tour Builder: \url{http://localhost:3000/tour}
+  \item Frontend deploy: \url{https://3-d-building-builder.vercel.app/}
 \end{itemize}
 
 \section{Deliverables}
@@ -304,7 +307,7 @@ Mở trình duyệt:
   \item \textbf{Source code}: \url{https://github.com/hoaianthai345/3D_Building_Builder}
   \item \textbf{README.md}: có hướng dẫn cài đặt local, cấu hình LLM, Supabase, TTS, Docker, test/build.
   \item \textbf{Report}: file LaTeX này có thể compile thành PDF.
-  \item \textbf{Link deploy}: frontend sẵn sàng deploy Vercel; backend dùng URL cấu hình qua \texttt{NEXT\_PUBLIC\_API\_URL}.
+  \item \textbf{Link deploy}: \url{https://3-d-building-builder.vercel.app/}; backend dùng URL cấu hình qua \texttt{NEXT\_PUBLIC\_API\_URL}.
   \item \textbf{Video demo}: có thể quay 3--5 phút theo flow: landing page, tạo project, upload ảnh, chọn model, sinh script, chỉnh text, render audio và mở tour.
 \end{itemize}
 
