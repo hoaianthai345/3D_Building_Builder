@@ -175,7 +175,7 @@ source .venv/bin/activate
 python scripts/seed_demo_supabase.py
 ```
 
-Script đọc `.env`, upload audio demo vào bucket `3D` và upsert project `demo-home-tour-lake-view` vào bảng `tour_projects`.
+Script đọc `.env`, upload audio demo vào bucket `3D` và upsert project `3D_AITour` (`id=3d-aitour`) vào bảng `tour_projects`.
 
 ## VieNeu-TTS
 

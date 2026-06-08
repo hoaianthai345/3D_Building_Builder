@@ -120,12 +120,12 @@ def build_project(audio_url: str) -> dict:
         },
     ]
     tour = {
-        "id": "demo-home-tour",
-        "project_name": "Tour xem nhà mẫu Lake View",
+        "id": "3d-aitour-demo",
+        "project_name": "3D_AITour",
         "industry": "real_estate",
         "created_at": now,
-        "intro": "Xin chào quý khách, mời quý khách cùng tham quan căn hộ mẫu Lake View. Tour này đã có sẵn lời dẫn và audio để có thể mở lại ngay.",
-        "outro": "Cảm ơn quý khách đã tham quan căn hộ mẫu Lake View. Hy vọng tour 3D đã giúp quý khách hình dung rõ hơn về không gian sống.",
+        "intro": "Xin chào quý khách, mời quý khách cùng tham quan dự án 3D_AITour. Tour này đã có sẵn lời dẫn và audio để có thể mở lại ngay.",
+        "outro": "Cảm ơn quý khách đã tham quan 3D_AITour. Hy vọng tour 3D đã giúp quý khách hình dung rõ hơn về không gian sống.",
         "stops": [
             {
                 "id": "home-living",
@@ -199,7 +199,7 @@ def build_project(audio_url: str) -> dict:
         ],
     }
     project = {
-        "id": "demo-home-tour-lake-view",
+        "id": "3d-aitour",
         "name": tour["project_name"],
         "industry": "real_estate",
         "stops": stops,
