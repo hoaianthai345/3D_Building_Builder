@@ -205,24 +205,34 @@ UI rõ ràng, dễ dùng & Có layout builder, preview ảnh lớn, editor scrip
 
 \subsection{Prompt Mẫu}
 
-\begin{lstlisting}[style=code]
-Hãy phân tích ảnh/panorama của một điểm dừng trong tour 3D.
-Trả về JSON tiếng Việt gồm:
-- title
-- description
-- highlights: 3-5 ý
-- digitization_tips: các điểm cần chú ý khi số hóa 3D
-Tone phù hợp ngành bất động sản/bán lẻ/triển lãm.
-\end{lstlisting}
+\noindent\fbox{%
+  \begin{minipage}{0.94\linewidth}
+    Hãy phân tích ảnh/panorama của một điểm dừng trong tour 3D.
+    Trả về JSON tiếng Việt gồm:
+    \begin{itemize}
+      \item \texttt{title}
+      \item \texttt{description}
+      \item \texttt{highlights}: 3--5 ý
+      \item \texttt{digitization\_tips}: các điểm cần chú ý khi số hóa 3D
+    \end{itemize}
+    Tone phù hợp ngành bất động sản, bán lẻ hoặc triển lãm.
+  \end{minipage}
+}
 
-\begin{lstlisting}[style=code]
-Từ danh sách các điểm dừng đã có title, description và highlights,
-hãy viết lời dẫn hướng dẫn viên bằng tiếng Việt gồm:
-- intro
-- narration cho từng điểm
-- outro
-Giọng văn tự nhiên, dễ nghe khi chuyển thành TTS.
-\end{lstlisting}
+\vspace{0.35cm}
+
+\noindent\fbox{%
+  \begin{minipage}{0.94\linewidth}
+    Từ danh sách các điểm dừng đã có \texttt{title}, \texttt{description} và \texttt{highlights},
+    hãy viết lời dẫn hướng dẫn viên bằng tiếng Việt gồm:
+    \begin{itemize}
+      \item \texttt{intro}
+      \item \texttt{narration} cho từng điểm
+      \item \texttt{outro}
+    \end{itemize}
+    Giọng văn tự nhiên, dễ nghe khi chuyển thành TTS.
+  \end{minipage}
+}
 
 \subsection{Cách Kiểm Tra Lại Output Của AI}
 
