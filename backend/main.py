@@ -242,7 +242,7 @@ def _artifact_url(path: os.PathLike[str] | str) -> str:
 
 
 def _runtime_llm(provider: str, api_key: str, model: str) -> LLMClient | None:
-    if not api_key.strip():
+    if not provider.strip() and not api_key.strip() and not model.strip():
         return None
     try:
         return llm_from_runtime_key(provider, api_key, model)

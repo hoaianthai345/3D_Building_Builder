@@ -241,6 +241,17 @@ def test_runtime_google_provider_can_be_created_from_user_key():
     assert llm.name == "gemini"
 
 
+def test_runtime_groq_provider_uses_env_key_when_user_key_is_empty(monkeypatch):
+    monkeypatch.setenv("GROQ_API_KEY", "gsk-demo")
+    monkeypatch.setenv("GROQ_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
+
+    llm = llm_from_runtime_key("groq", "", "")
+
+    assert llm.name == "groq"
+    assert getattr(llm, "api_key") == "gsk-demo"
+    assert getattr(llm, "model") == "meta-llama/llama-4-scout-17b-16e-instruct"
+
+
 def test_api_tts_returns_wav_when_engine_available(monkeypatch, tmp_path):
     wav = tmp_path / "voice.wav"
     wav.write_bytes(b"RIFF....WAVEfmt ")

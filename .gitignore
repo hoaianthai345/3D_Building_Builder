@@ -11,6 +11,7 @@ bench/results.csv
 # raw media / local source assets. Optimized assets under frontend/public are committed.
 /images/
 /muisic/
+/record/
 
 # secrets / env
 .env

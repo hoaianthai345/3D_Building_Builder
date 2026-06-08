@@ -308,13 +308,13 @@ export default function TourPage() {
   const [draftTour, setDraftTour] = useState<TourWithAudio | null>(null);
   const [building, setBuilding] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [llmProvider, setLlmProvider] = useState<LlmProvider>("gemini");
+  const [llmProvider, setLlmProvider] = useState<LlmProvider>("groq");
   const [llmApiKey, setLlmApiKey] = useState("");
-  const [llmModels, setLlmModels] = useState<string[]>(LLM_MODEL_OPTIONS.gemini);
+  const [llmModels, setLlmModels] = useState<string[]>(LLM_MODEL_OPTIONS.groq);
   const [llmModelsSource, setLlmModelsSource] = useState<"default" | "provider">("default");
   const [llmModelsLoading, setLlmModelsLoading] = useState(false);
   const [llmModelsError, setLlmModelsError] = useState<string | null>(null);
-  const [llmModel, setLlmModel] = useState(LLM_MODEL_DEFAULTS.gemini);
+  const [llmModel, setLlmModel] = useState(LLM_MODEL_DEFAULTS.groq);
   const [dragActive, setDragActive] = useState(false);
   const [loading, setLoading] = useState<LoadingState | null>(null);
   const [projectStoreStatus, setProjectStoreStatus] = useState<ProjectStoreStatus>("checking");
@@ -553,7 +553,6 @@ export default function TourPage() {
 
   function llmPayload() {
     const key = llmApiKey.trim();
-    if (!key) return {};
     return {
       llm_provider: llmProvider,
       llm_api_key: key,
@@ -1052,7 +1051,7 @@ export default function TourPage() {
                 <div>
                   <p className="text-sm font-medium">LLM mô tả ảnh</p>
                   <p className="text-xs text-[var(--text-faint)]">
-                    Không nhập key thì dùng mock AI local. Groq cần model vision như Llama 4 Scout để đọc ảnh.
+                    Không nhập key thì backend dùng key demo/env nếu có, nếu không sẽ fallback mock AI. Groq cần model vision như Llama 4 Scout để đọc ảnh.
                   </p>
                 </div>
                 <select

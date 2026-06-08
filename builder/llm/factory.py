@@ -71,28 +71,38 @@ def llm_from_runtime_key(provider: str, api_key: str, model: str = "") -> LLMCli
     provider = (provider or "openai").strip().lower()
     api_key = api_key.strip()
     model = model.strip()
-    if not api_key:
-        return get_llm()
 
     if provider in {"anthropic", "claude"}:
+        api_key = api_key or os.getenv("ANTHROPIC_API_KEY", "").strip()
+        if not api_key:
+            return get_llm()
         from .claude import ClaudeLLM
 
-        return ClaudeLLM(model=model or None, api_key=api_key)
+        return ClaudeLLM(model=model or os.getenv("CLAUDE_MODEL", "").strip() or None, api_key=api_key)
     if provider in {"openai", "openai_compatible"}:
+        api_key = api_key or os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return get_llm()
         from .openai_compatible import OpenAICompatibleLLM
 
-        return OpenAICompatibleLLM(api_key=api_key, model=model or None)
+        return OpenAICompatibleLLM(api_key=api_key, model=model or os.getenv("OPENAI_MODEL", "").strip() or None)
     if provider == "groq":
+        api_key = api_key or os.getenv("GROQ_API_KEY", "").strip()
+        if not api_key:
+            return get_llm()
         from .openai_compatible import OpenAICompatibleLLM
 
         return OpenAICompatibleLLM(
             api_key=api_key,
-            model=model or "meta-llama/llama-4-scout-17b-16e-instruct",
+            model=model or os.getenv("GROQ_MODEL", "").strip() or "meta-llama/llama-4-scout-17b-16e-instruct",
             base_url="https://api.groq.com/openai/v1",
             provider_name="groq",
         )
     if provider in {"gemini", "google"}:
+        api_key = api_key or os.getenv("GEMINI_API_KEY", "").strip() or os.getenv("GOOGLE_API_KEY", "").strip()
+        if not api_key:
+            return get_llm()
         from .gemini import GeminiLLM
 
-        return GeminiLLM(api_key=api_key, model=model or None)
+        return GeminiLLM(api_key=api_key, model=model or os.getenv("GEMINI_MODEL", "").strip() or None)
     raise ValueError("unsupported llm provider")

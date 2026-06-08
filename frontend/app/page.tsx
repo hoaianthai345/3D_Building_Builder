@@ -266,13 +266,15 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="flex aspect-video min-h-[280px] items-center justify-center rounded-2xl border border-dashed border-[var(--border-strong)] bg-[var(--surface)] p-6 text-center">
-              <div>
-                <PlayCircleIcon size={56} className="mx-auto text-[var(--accent-hover)]" />
-                <p className="mt-4 text-lg font-semibold">Video demo slot</p>
-                <p className="mx-auto mt-2 max-w-[48ch] text-sm leading-relaxed text-[var(--text-muted)]">
-                  Thay nội dung div này bằng iframe hoặc thẻ video khi có file demo. Gợi ý video: tạo dự án, upload panorama, chọn provider, sinh script, chỉnh text, render audio và mở tour toàn màn hình.
-                </p>
+            <div className="rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-3">
+              <div className="aspect-video min-h-[280px] overflow-hidden rounded-xl">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/jDPyOOI60EU"
+                  title="Video demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               </div>
             </div>
           </Reveal>
